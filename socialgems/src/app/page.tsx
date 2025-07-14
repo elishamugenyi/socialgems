@@ -13,17 +13,6 @@ import { warnOptionHasBeenMovedOutOfExperimental } from "next/dist/server/config
 
 export default function Home() {
   const isMobile = useMediaQuery({ maxWidth: 600 }); 
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
   useEffect(() => {
     // Initialize AOS
     AOS.init({
@@ -55,8 +44,8 @@ export default function Home() {
             <Image
               src="/connect-image.jpg" 
               alt="Hero Image" 
-              layout="fill" 
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
               className="z-0 rounded-md"
               priority
             />
@@ -64,8 +53,8 @@ export default function Home() {
             <Image 
               src="/SG-web-banner.jpg"
               alt="Hero Image"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
               className="z-0 rounded-md"
               priority
             />
@@ -92,34 +81,34 @@ export default function Home() {
 
             {/* Buttons Container */}
             <div className="flex flex-col md:flex-row gap-4">
-              <button
-                onClick={handleOpenModal}
+              <Link href="https://play.google.com/store/apps/details?id=com.tekjuice.social_gems"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:opacity-80"
               >
                 <Image
-                  src="/Google-play-store.svg" // Replace with your Google Play logo path
+                  src="/Google-play-store.svg"
                   alt="Download on Google Play"
                   width={150}
                   height={50}
                   className="hover:opacity-80 rounded-md"
                 />
-              </button>
+              </Link>
 
-              <button
-                onClick={handleOpenModal}
+              <Link href=" https://apps.apple.com/ug/app/social-gems/id6736918664"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:opacity-80"
               >
                 <Image
-                  src="/App-store.svg" // Replace with your App Store logo path
+                  src="/App-store.svg" 
                   alt="Download on the App Store"
                   width={150}
                   height={50}
                   className="hover:opacity-80 transition-opacity rounded-md"
                 />
-              </button>
+              </Link>
             </div>
-            {/* Coming Soon Modal */}
-            <ComingSoonModal isOpen={isModalOpen} onClose={handleCloseModal} />
           </div>
         </div>
       </section>
@@ -187,7 +176,7 @@ export default function Home() {
               <div className="flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="400">
                 <div className="w-full mb-4">
                   <Image
-                    src="/glow-image.jpg" // Replace with your image path
+                    src="/social-gems-web-leinah.jpg" // Replace with your image path
                     alt="Glow Image"
                     width={400}
                     height={400}
@@ -205,13 +194,13 @@ export default function Home() {
                 </div>
                 <h4 className="text-black text-xl font-bold mb-4">GLOW</h4>
                 <p className="text-black">
-                  With cutting-edge technology and smart insights, we help both businesses and influencers shine.
+                  With cutting-edge technology and smart insights, we help both brands and influencers shine.
                 </p>
               </div>
             </div>
 
             {/* Video Section */}
-            <div className="flex justify-center mt-8" data-aos="fade-up">
+            {/*<div className="flex justify-center mt-8" data-aos="fade-up">
               <div className="w-full max-w-4xl">
                 <video
                   autoPlay
@@ -221,11 +210,11 @@ export default function Home() {
                   className="w-full rounded-md"
                   style={{ objectFit: "cover" }}
                 >
-                  <source src="/infographics.mp4" type="video/mp4" /> {/* Replace with your video path */}
+                  <source src="/web-video1.mp4" type="video/mp4" /> 
                   Your browser does not support the video tag.
                 </video>
               </div>
-            </div>
+            </div>*/}
           </div>
 
           {/* Second Section: Influencer and Brand */}
@@ -241,8 +230,8 @@ export default function Home() {
                   We empower creators to build thriving careers and reach 
                   their full potential. By joining Social Gems, 
                   you can earn <strong>Gem Points</strong> for your influence 
-                  and engagement. These points can be exchanged for real 
-                  currency, giving you more opportunities to benefit 
+                  and engagement. These points can be exchanged for rewards and discounts,
+                  giving you more opportunities to benefit 
                   from your hard work.
                 </p>
                 <div className="mb-4">
@@ -302,7 +291,7 @@ export default function Home() {
                   With Social Gems, you can:
                 </p>
                 <ul className="text-black list-disc list-inside mb-4">
-                  <li>Find influencers tailored to your brand’s niche.</li>
+                  <li>Find influencers tailored to your brand's niche.</li>
                   <li>Track campaign performance in real-time.</li>
                   <li>Maximize ROI with data-driven insights.</li>
                 </ul>

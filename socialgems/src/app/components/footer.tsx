@@ -33,7 +33,7 @@ const Footer = () => {
             <div className="flex flex-col items-center sm:items-start">
               <h3 className="text-lg font-semibold mb-2">Legal</h3>
               <ul className="space-y-2">
-                <li><Link href="/privacypolicy" className="text-gray-400 hover:text-white">Terms of Service</ Link></li>
+                <li><Link href="/terms-of-use" className="text-gray-400 hover:text-white">Terms of Use</ Link></li>
                 <li><Link href="/privacypolicy" className="text-gray-400 hover:text-white">Cookie Policy</ Link></li>
                 <li><Link href="/privacypolicy" className="text-gray-400 hover:text-white">Disclaimers</ Link></li>
               </ul>
@@ -44,9 +44,9 @@ const Footer = () => {
               <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
               <ul className="space-y-2">
                 <li><Link href="/contact" className="text-gray-400 hover:text-white">Email Us</ Link></li>
-                <li><Link hidden href="#" className="text-gray-400 hover:text-white">Support</ Link></li>
-                <li><Link hidden href="#" className="text-gray-400 hover:text-white">Help Center</ Link></li>
+                <span>Call us on +256767458425</span>
               </ul>
+              
             </div>
           </div>
   

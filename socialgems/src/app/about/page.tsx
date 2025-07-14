@@ -1,12 +1,24 @@
 'use client'
+import { useEffect, useState } from 'react';
+
 import Image from "next/image";
-import Link from "next/link";
-import { useMediaQuery } from "react-responsive";
+//import { useMediaQuery } from "react-responsive";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
 export default function About() {
-  const isMobile = useMediaQuery({ maxWidth: 767 }); 
+  const [ isMobile, setIsMobile ] = useState(false);
+
+  useEffect(() => {
+    //this will only run on client side
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -19,8 +31,8 @@ export default function About() {
             <Image
               src="/connect-image.jpg" 
               alt="Hero Image" 
-              layout="fill" 
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
               className="z-0 rounded-md"
               priority
             />
@@ -28,8 +40,8 @@ export default function About() {
             <Image 
               src="/SG-web-banner-about.jpg"
               alt="Hero Image"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
               className="z-0 rounded-md"
               priority
             />
@@ -49,7 +61,7 @@ export default function About() {
 
       {/* Main Content */}
       <section className="flex-1 py-12 px-8 bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Mission Section */}
           <div className="bg-white p-8 rounded-2xl shadow-lg mb-8">
             <h2 className="text-3xl font-bold text-brown mb-4">Our Story</h2>
@@ -61,7 +73,7 @@ export default function About() {
               and businesses struggle to connect with the right 
               audience. Social Gems bridges this gap, transforming 
               organic social sharing into a powerful tool that connects
-              businesses with authentic influence. We’re redefining 
+              businesses with authentic influence. We're redefining 
               influence and making marketing more human, trusted, 
               and effective.
             </p>
@@ -75,84 +87,456 @@ export default function About() {
 
           {/* Team Section */}
           <div className="bg-white p-8 rounded-2xl shadow-lg mb-8">
-            <h2 className="text-3xl font-bold text-brown mb-4">Our Team</h2>
+            <h2 className="text-3xl font-bold text-brown mb-8 text-center">Our Team</h2>
 
-            {/* Rest of the Team Members (Bottom Row) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Team Member 3 */}
-              <div className="text-center">
-                <Image
-                  src="/social-gems-web-eve.jpg" // Replace with your image path
-                  alt="Team Leader 2"
-                  width={150}
-                  height={150}
-                  className="rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-xl font-bold text-black">Evelyn Luganda:</h3>
-                <p className="text-brown">Project Manager</p>
-              </div>
-              <div className="text-center">
-                <Image
-                  src="/social-gems-web-christine.jpg" // Replace with your image path
-                  alt="Team Member 3"
-                  width={150}
-                  height={150}
-                  className="rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-xl font-bold text-black">Nampeera Christine</h3>
-                <p className="text-brown">Brand/Influencer Recruitment Specialist</p>
+            {/* Two Column Layout */}
+            <div className="flex flex-col lg:flex-row gap-8">
+              {/* Uganda Team - Left Column */}
+              <div className="flex-1">
+                {/* Uganda Team Header */}
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center justify-center bg-gradient-to-r from-gold to-yellow-400 text-brown px-6 py-3 rounded-full shadow-lg">
+                    <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                    </svg>
+                    <h3 className="text-xl font-bold">Uganda Team</h3>
+                  </div>
+                </div>
+
+                {/* Uganda Team Members */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Team Member 1 - Evelyn */}
+                  <div className="group relative h-80 w-full perspective-1000">
+                    <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                      {/* Front Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src="/social-gems-web-eve.jpg"
+                            alt="Evelyn Luganda"
+                            fill
+                            className="object-cover rounded-lg"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-lg">
+                            <div className="absolute bottom-4 left-4 right-4 text-white">
+                              <h3 className="text-xl font-bold mb-1">Evelyn Luganda</h3>
+                              <p className="text-gold font-medium">Project Manager, Uganda</p>
+                              <div className="flex items-center mt-2 text-white/80">
+                                <span className="text-sm">View Profile</span>
+                                <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Back Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black font-bold rounded-lg p-6 flex flex-col justify-center">
+                        <h3 className="text-xl font-bold text-white mb-2">Evelyn Luganda</h3>
+                        <p className="text-white/90 text-sm mb-3">Project Manager, Uganda</p>
+                        <p className="text-white/80 text-xs leading-relaxed">
+                          Evelyn is the driving force behind Social Gems. As Project Manager and one of the original minds behind the platform&apos;s vision, she has overseen the company&apos;s growth from concept to reality. Known for her bold leadership and clear vision, Evelyn brings creativity and unstoppable energy to the team.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Team Member 2 - Christine */}
+                  <div className="group relative h-80 w-full perspective-1000">
+                    <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                      {/* Front Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src="/social-gems-web-christine.jpg"
+                            alt="Nampeera Christine"
+                            fill
+                            className="object-cover rounded-lg"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-lg">
+                            <div className="absolute bottom-4 left-4 right-4 text-white">
+                              <h3 className="text-xl font-bold mb-1">Nampeera Christine</h3>
+                              <p className="text-gold font-medium">Brand Ambassador, Uganda</p>
+                              <div className="flex items-center mt-2 text-white/80">
+                                <span className="text-sm">View Profile</span>
+                                <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Back Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black font-bold rounded-lg p-6 flex flex-col justify-center">
+                        <h3 className="text-xl font-bold text-white mb-2">Nampeera Christine</h3>
+                        <p className="text-white/90 text-sm mb-3">Brand Ambassador, Uganda</p>
+                        <p className="text-white/80 text-xs leading-relaxed">
+                          As the face of Social Gems on social media, Christine represents the brand with authenticity, style, and purpose. With her background as an influencer, Christine brings a natural energy to her role connecting with audiences and building a strong online presence for the brand.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Team Member 3 - Martha */}
+                  <div className="group relative h-80 w-full perspective-1000">
+                    <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                      {/* Front Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src="/social-gems-web-martha.jpg"
+                            alt="Martha Twesime"
+                            fill
+                            className="object-cover rounded-lg"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-lg">
+                            <div className="absolute bottom-4 left-4 right-4 text-white">
+                              <h3 className="text-xl font-bold mb-1">Martha Twesime</h3>
+                              <p className="text-gold font-medium">Administration & Operations Support, Uganda</p>
+                              <div className="flex items-center mt-2 text-white/80">
+                                <span className="text-sm">View Profile</span>
+                                <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Back Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black font-bold rounded-lg p-6 flex flex-col justify-center">
+                        <h3 className="text-xl font-bold text-white mb-2">Martha Twesime</h3>
+                        <p className="text-white/90 text-sm mb-3">Administration & Operations Support, Uganda</p>
+                        <p className="text-white/80 text-xs leading-relaxed">
+                          Martha acts as the vital link between the development team and the wider Social Gems team, ensuring smooth and clear communication across departments. She also oversees customer care, helping users get the best experience possible.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Team Member 4 - Susan Haley */}
+                  <div className="group relative h-80 w-full perspective-1000">
+                    <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                      {/* Front Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src="/Tushabe.jpg"
+                            alt="Susan Haley Tushabe"
+                            fill
+                            className="object-cover rounded-lg"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-lg">
+                            <div className="absolute bottom-4 left-4 right-4 text-white">
+                              <h3 className="text-xl font-bold mb-1">Susan Haley Tushabe</h3>
+                              <p className="text-gold font-medium">Marketing Manager, Uganda</p>
+                              <div className="flex items-center mt-2 text-white/80">
+                                <span className="text-sm">View Profile</span>
+                                <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Back Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black font-bold rounded-lg p-6 flex flex-col justify-center">
+                        <h3 className="text-xl font-bold text-white mb-2">Susan Haley Tushabe</h3>
+                        <p className="text-white/90 text-sm mb-3">Marketing Manager, Uganda</p>
+                        <p className="text-white/80 text-xs leading-relaxed">
+                          As Marketing Executive, Haley leads the overall marketing strategy and direction for Social Gems. With her years of experience in the field, Haley brings both strategic insight and creative leadership to the team.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Team Member 5 - Jean */}
+                  <div className="group relative h-80 w-full perspective-1000">
+                    <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                      {/* Front Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src="/Jean.jpg"
+                            alt="Jean Biryahwaho"
+                            fill
+                            className="object-cover rounded-lg"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-lg">
+                            <div className="absolute bottom-4 left-4 right-4 text-white">
+                              <h3 className="text-xl font-bold mb-1">Jean Biryahwaho</h3>
+                              <p className="text-gold font-medium">Sales Associate, Uganda</p>
+                              <div className="flex items-center mt-2 text-white/80">
+                                <span className="text-sm">View Profile</span>
+                                <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Back Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black font-bold rounded-lg p-6 flex flex-col justify-center">
+                        <h3 className="text-xl font-bold text-white mb-2">Jean Biryahwaho</h3>
+                        <p className="text-white/90 text-sm mb-3">Sales Associate, Uganda</p>
+                        <p className="text-white/80 text-xs leading-relaxed">
+                          Jean is the bridge between Social Gems and the brands we serve. As a Sales Associate, she connects directly with businesses from field visits to in-person pitches, helping them understand how Social Gems can elevate their visibility.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Team Member 6 - Bernard */}
+                  <div className="group relative h-80 w-full perspective-1000">
+                    <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                      {/* Front Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src="/Beewol.jpg"
+                            alt="Bernard E. Olupot"
+                            fill
+                            className="object-cover rounded-lg"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-lg">
+                            <div className="absolute bottom-4 left-4 right-4 text-white">
+                              <h3 className="text-xl font-bold mb-1">Bernard E. Olupot</h3>
+                              <p className="text-gold font-medium">Head Of Influencers, Uganda</p>
+                              <div className="flex items-center mt-2 text-white/80">
+                                <span className="text-sm">View Profile</span>
+                                <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Back Side */}
+                      <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black font-bold rounded-lg p-6 flex flex-col justify-center">
+                        <h3 className="text-xl font-bold text-white mb-2">Bernard E. Olupot</h3>
+                        <p className="text-white/90 text-sm mb-3">Head Of Influencers, Uganda</p>
+                        <p className="text-white/80 text-xs leading-relaxed">
+                          As Head of Influencers for Africa, Bernard leads the growth and coordination of Social Gems' influencer network across the continent. With a strong background as an influencer himself, he brings firsthand knowledge and credibility to the role.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* Team Member 2 */}
-              <div className="text-center">
-                <Image
-                  src="/barbra.jpg" // Replace with your image path
-                  alt="Team Member 4"
-                  width={150}
-                  height={150}
-                  className="rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-xl font-bold text-black">Ampaire Babra</h3>
-                <p className="text-brown">Copywriter/Digital Marketer</p>
+              {/* Beautiful Divider */}
+              <div className="hidden lg:flex flex-col items-center justify-center px-4">
+                <div className="w-px h-full bg-gradient-to-b from-transparent via-gold to-transparent"></div>
+                <div className="absolute bg-white rounded-full p-4 shadow-lg">
+                  <svg className="w-8 h-8 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
+                  </svg>
+                </div>
               </div>
 
-              {/* Team Member 5 */}
-              <div className="text-center">
-                <Image
-                  src="/social-gems-web-leinah.jpg" // Replace with your image path
-                  alt="Team Member 5"
-                  width={150}
-                  height={150}
-                  className="rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-xl font-bold text-black">Leinah Nabukenya</h3>
-                <p className="text-brown">Digital Marketer</p>
-              </div>
+              {/* Right Column - UK Team and Kenya Team */}
+              <div className="flex-1">
+                {/* UK Team Section */}
+                <div className="mb-12">
+                  {/* UK Team Header */}
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center bg-gradient-to-r from-brown to-red-600 text-white px-6 py-3 rounded-full shadow-lg">
+                      <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                      </svg>
+                      <h3 className="text-xl font-bold">UK Team</h3>
+                    </div>
+                  </div>
 
-              {/* Team Member 6 */}
-              <div className="text-center">
-                  <Image
-                    src="/social-gems-web-martha.jpg" // Replace with your image path
-                    alt="Team Member 6"
-                    width={150}
-                    height={150}
-                    className="rounded-full mx-auto mb-4"
-                  />
-                  <h3 className="text-xl font-bold text-black">Martha Twesime</h3>
-                  <p className="text-brown">Sales Associate</p>
-              </div>
+                  {/* UK Team Members */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Team Member 7 - Atif */}
+                    <div className="group relative h-80 w-full perspective-1000">
+                      <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                        {/* Front Side */}
+                        <div className="absolute inset-0 w-full h-full backface-hidden">
+                          <div className="relative w-full h-full">
+                            <Image
+                              src="/atif.jpg"
+                              alt="Atif Muhammad"
+                              fill
+                              className="object-cover rounded-lg"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-lg">
+                              <div className="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 className="text-xl font-bold mb-1">Atif Muhammad</h3>
+                                <p className="text-gold font-medium">Marketing Executive, UK</p>
+                                <div className="flex items-center mt-2 text-white/80">
+                                  <span className="text-sm">View Profile</span>
+                                  <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Back Side */}
+                        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black font-bold rounded-lg p-6 flex flex-col justify-center">
+                          <h3 className="text-xl font-bold text-white mb-2">Atif Muhammad</h3>
+                          <p className="text-white/90 text-sm mb-3">Marketing Executive, UK</p>
+                          <p className="text-white/80 text-xs leading-relaxed">
+                            As Marketing Executive, Atif brings a wealth of experience and expertise to Social Gems. With a strong background in digital marketing and a passion for creating impactful campaigns, he leads the overall marketing strategy and direction for the company.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
 
-              {/* Team Member 5 */}
-              <div className="text-center">
-                <Image
-                  src="/social-gems-web-hanie.jpg" // Replace with your image path
-                  alt="Team Member 7"
-                  width={150}
-                  height={150}
-                  className="rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-xl font-bold text-black">Hanifah Wanyana</h3>
-                <p className="text-brown">Brand Relationships Associate</p>
+                    {/* Team Member 8 - Great */}
+                    <div className="group relative h-80 w-full perspective-1000">
+                      <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                        {/* Front Side */}
+                        <div className="absolute inset-0 w-full h-full backface-hidden">
+                          <div className="relative w-full h-full">
+                            <Image
+                              src="/great.jpg"
+                              alt="Great Ajieh"
+                              fill
+                              className="object-cover rounded-lg"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-lg">
+                              <div className="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 className="text-xl font-bold mb-1">Great Ajieh</h3>
+                                <p className="text-gold font-medium">Business Development Manager, UK</p>
+                                <div className="flex items-center mt-2 text-white/80">
+                                  <span className="text-sm">View Profile</span>
+                                  <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Back Side */}
+                        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black font-bold rounded-lg p-6 flex flex-col justify-center">
+                          <h3 className="text-xl font-bold text-white mb-2">Great Ajieh</h3>
+                          <p className="text-white/90 text-sm mb-3">Business Development Manager, UK</p>
+                          <p className="text-white/80 text-xs leading-relaxed">
+                            As Business Development Manager, Great brings a unique blend of creativity and business acumen to Social Gems. With a background in marketing and a passion for building strong connections, he leads the overall business development strategy and direction for the company.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Kenya Team Section */}
+                <div>
+                  {/* Kenya Team Header */}
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full shadow-lg">
+                      <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                      </svg>
+                      <h3 className="text-xl font-bold">Kenya Team</h3>
+                    </div>
+                  </div>
+
+                  {/* Kenya Team Members */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Team Member - Kim Thiru */}
+                    <div className="group relative h-80 w-full perspective-1000">
+                      <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                        {/* Front Side */}
+                        <div className="absolute inset-0 w-full h-full backface-hidden">
+                          <div className="relative w-full h-full">
+                            <Image
+                              src="/kim.jpg"
+                              alt="Kim Thiru"
+                              fill
+                              className="object-cover rounded-lg"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-lg">
+                              <div className="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 className="text-xl font-bold mb-1">Kim Thiru</h3>
+                                <p className="text-gold font-medium">Sales Associate, Kenya</p>
+                                <div className="flex items-center mt-2 text-white/80">
+                                  <span className="text-sm">View Profile</span>
+                                  <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Back Side */}
+                        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black font-bold rounded-lg p-6 flex flex-col justify-center">
+                          <h3 className="text-xl font-bold text-white mb-2">Kim Thiru</h3>
+                          <p className="text-white/90 text-sm mb-3">Sales Associate, Kenya</p>
+                          <p className="text-white/80 text-xs leading-relaxed">
+                            Kim handles all things sales for Social Gems in Kenya. 
+                            From researching businesses to building partnerships, 
+                            he's always studying the market and making sure we 
+                            connect with the right brands. He's all about growth, 
+                            strategy, and keeping Social Gems visible in the right 
+                            spaces.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Team Member - Monica Cyrus */}
+                    <div className="group relative h-80 w-full perspective-1000">
+                      <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                        {/* Front Side */}
+                        <div className="absolute inset-0 w-full h-full backface-hidden">
+                          <div className="relative w-full h-full">
+                            <Image
+                              src="/monica.jpg"
+                              alt="Monica Cyrus"
+                              fill
+                              className="object-cover rounded-lg"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-lg">
+                              <div className="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 className="text-xl font-bold mb-1">Monica Cyrus</h3>
+                                <p className="text-gold font-medium">Head of Marketing & Country Manager, Kenya</p>
+                                <div className="flex items-center mt-2 text-white/80">
+                                  <span className="text-sm">View Profile</span>
+                                  <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Back Side */}
+                        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black font-bold rounded-lg p-6 flex flex-col justify-center">
+                          <h3 className="text-xl font-bold text-white mb-2">Monica Cyrus</h3>
+                          <p className="text-white/90 text-sm mb-3">Head of Marketing & Country Manager, Kenya</p>
+                          <p className="text-white/80 text-xs leading-relaxed">
+                            As the Head of Marketing for Social Gems, Monica leads creative strategy across Kenya 
+                            and supports the magic happening in Uganda too. She's all about building meaningful 
+                            connections and making sure the Social Gems brand shines everywhere it goes.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
