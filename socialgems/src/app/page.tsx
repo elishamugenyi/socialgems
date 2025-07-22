@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 import Link from "next/link";
-import ComingSoonModal from "./components/comingSoonModal"; // Import the modal
+//import ComingSoonModal from "./components/comingSoonModal"; // Import the modal
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import { useState, useEffect } from 'react';
@@ -21,7 +21,7 @@ export default function Home() {
     });
 
     // Refresh AOS on route changes
-    const handleRouteChange = () => {
+    const handleRouteChange = (): void => {
       AOS.refresh();
     };
 
