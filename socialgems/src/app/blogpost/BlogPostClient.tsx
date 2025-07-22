@@ -681,7 +681,7 @@ export default function BlogPost() {
                     onClick={() => handleTabChange(tab.key as typeof activeTab)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all ${
                       activeTab === tab.key
-                        ? 'bg-gold text-white shadow-md'
+                        ? 'bg-gold text-brown shadow-md'
                         : 'text-gray-700 hover:bg-gray-100'
                     }`}
                   >
@@ -716,11 +716,11 @@ export default function BlogPost() {
 
               {/* Call to Action */}
               <div className="mt-6 p-4 bg-gold/10 rounded-lg">
-                <h4 className="text-sm font-semibold text-gold mb-2">Share Your Story</h4>
+                <h4 className="text-sm font-semibold text-brown mb-2">Share Your Story</h4>
                 <p className="text-xs text-gray-600 mb-3">Join our community and share your creative content</p>
                 <Link 
                   href="/create-story"
-                  className="block w-full text-center bg-gold text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-gold/90 transition-colors"
+                  className="block w-full text-center bg-gold text-brown py-2 px-4 rounded-lg text-sm font-medium hover:bg-gold/90 transition-colors"
                 >
                   Create Story
                 </Link>
@@ -1058,7 +1058,7 @@ export default function BlogPost() {
                       {currentStory.tags.map((tag, index) => (
                         <span
                           key={index}
-                          className="px-3 py-1 bg-gold/10 text-gold text-sm rounded-full"
+                          className="px-3 py-1 bg-gold/10 text-brown text-sm rounded-full"
                         >
                           {tag}
                         </span>
