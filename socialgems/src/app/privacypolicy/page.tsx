@@ -21,12 +21,10 @@ export default function PrivacyPolicy() {
                         
                         {/* Header */}
                         <div className="text-center mb-12 pb-8 border-b border-gray-200">
-                            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-                                Privacy Policy
-                            </h1>
-                            <p className="text-lg text-gray-600">
-                                Social Gems Privacy Policy/Notice
-                            </p>
+                            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+                            Social Gems Privacy Policy/Notice
+                            </h3>
+                           
                             <p className="text-sm text-gray-500 mt-2">
                                 Last modified: 14 August 2025
                             </p>
