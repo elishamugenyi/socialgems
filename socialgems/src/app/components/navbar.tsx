@@ -11,6 +11,7 @@ import ResetPasswordForm from './ResetPasswordForm/page';
 const SEARCHABLE_PAGES = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
+  { name: "Events", path: "/events" },
   { name: "Influencers", path: "/influencers" },
   { name: "Brands", path: "/signup" },
   { name: "Blog", path: "/blogpost" },
@@ -192,6 +193,7 @@ const Navbar = () => {
           {[
             { name: "Home", path: "/" },
             { name: "About", path: "/about" },
+            { name: "Events", path: "/events" },
             { name: "Influencers", path: "/influencers" },
             { name: "Brands", path: "/signup" },
             { name: "Blog", path: "/blogpost" },
@@ -321,6 +323,7 @@ const Navbar = () => {
           {[
             { name: "Home", path: "/" },
             { name: "About", path: "/about" },
+            { name: "Events", path: "/events" },
             { name: "Influencers", path: "/influencers" },
             { name: "Brands", path: "/signup" },
             { name: "Blog", path: "/blogpost" },

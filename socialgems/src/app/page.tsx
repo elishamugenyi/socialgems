@@ -11,8 +11,25 @@ import 'aos/dist/aos.css';
 import { useMediaQuery } from "react-responsive";
 import { warnOptionHasBeenMovedOutOfExperimental } from "next/dist/server/config";
 
+interface Event {
+  id: number;
+  title: string;
+  event_date: string;
+  event_time: string;
+  host: string;
+  location: string;
+  description: string;
+  image_url: string;
+  recurring: string;
+  created_at: string;
+}
+
 export default function Home() {
   const isMobile = useMediaQuery({ maxWidth: 600 }); 
+  const [events, setEvents] = useState<Event[]>([]);
+  const [closestEvent, setClosestEvent] = useState<Event | null>(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     // Initialize AOS
     AOS.init({
@@ -27,11 +44,106 @@ export default function Home() {
 
     Router.events.on('routeChangeComplete', handleRouteChange);
 
+    // Fetch events
+    fetchEvents();
+
     // Cleanup
     return () => {
       Router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, []); // Empty dependency array ensures this runs only once on mount
+
+  // Fetch events from API
+  const fetchEvents = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/create_event');
+      const data = await response.json();
+      
+      if (data.success) {
+        setEvents(data.events);
+        
+        // Find closest upcoming event
+        const currentDate = new Date();
+        const currentEvents = data.events.filter((event: Event) => new Date(event.event_date) >= currentDate);
+        setClosestEvent(currentEvents.length > 0 ? currentEvents[0] : null);
+      }
+    } catch (error) {
+      console.error('Error fetching events:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Countdown timer effect
+  useEffect(() => {
+    if (!closestEvent) return;
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      
+      // Fix date parsing - event_date is already a full ISO string
+      let eventDate: number;
+      
+      if (closestEvent.event_date) {
+        // Parse the event_date (which includes timezone info)
+        const eventDateTime = new Date(closestEvent.event_date);
+        
+        // If event_time exists, override the time portion
+        if (closestEvent.event_time) {
+          const [hours, minutes, seconds] = closestEvent.event_time.split(':').map(Number);
+          eventDateTime.setHours(hours, minutes, seconds || 0, 0);
+        }
+        
+        eventDate = eventDateTime.getTime();
+      } else {
+        eventDate = now; // Fallback
+      }
+      
+      const distance = eventDate - now;
+
+      if (distance > 0) {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Update DOM elements
+        const daysEl = document.getElementById('home-days');
+        const hoursEl = document.getElementById('home-hours');
+        const minutesEl = document.getElementById('home-minutes');
+        const secondsEl = document.getElementById('home-seconds');
+
+        if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+        if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+        if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+        if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+      } else {
+        // Event has passed
+        const daysEl = document.getElementById('home-days');
+        const hoursEl = document.getElementById('home-hours');
+        const minutesEl = document.getElementById('home-minutes');
+        const secondsEl = document.getElementById('home-seconds');
+
+        if (daysEl) daysEl.textContent = '00';
+        if (hoursEl) hoursEl.textContent = '00';
+        if (minutesEl) minutesEl.textContent = '00';
+        if (secondsEl) secondsEl.textContent = '00';
+      }
+    };
+
+    // Wait a bit for DOM to be ready, then update timer
+    const initialTimer = setTimeout(updateTimer, 100);
+
+    // Update timer every second
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    // Cleanup timer interval and initial timer
+    return () => {
+      clearTimeout(initialTimer);
+      clearInterval(timerInterval);
+    };
+  }, [closestEvent]);
 
   return (
     <div className="min-h-screen flex flex-col relative bg-white overflow-x-hidden">
@@ -109,6 +221,52 @@ export default function Home() {
                 />
               </Link>
             </div>
+
+            {/* Countdown Timer Section */}
+            {closestEvent && (
+              <div className="mt-8 w-full" data-aos="fade-up">
+                <div className="bg-black/60 backdrop-blur-sm rounded-2xl p-6 border border-gold/30">
+                  <div className="text-center mb-4">
+                    <h3 className="text-2xl md:text-3xl font-bold text-gold mb-2">
+                      {closestEvent.title}
+                    </h3>
+                    <p className="text-white text-lg">
+                      {new Date(closestEvent.event_date).toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })} at {closestEvent.event_time || '12:00'}
+                    </p>
+                    <p className="text-white text-base mt-1">
+                      Hosted by {closestEvent.host} • {closestEvent.location}
+                    </p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <h4 className="text-xl font-semibold text-white mb-4">Countdown to Event</h4>
+                    <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gold/30">
+                        <div className="text-3xl md:text-4xl font-bold text-gold" id="home-days">00</div>
+                        <div className="text-sm text-white font-medium">Days</div>
+                      </div>
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gold/30">
+                        <div className="text-3xl md:text-4xl font-bold text-gold" id="home-hours">00</div>
+                        <div className="text-sm text-white font-medium">Hours</div>
+                      </div>
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gold/30">
+                        <div className="text-3xl md:text-4xl font-bold text-gold" id="home-minutes">00</div>
+                        <div className="text-sm text-white font-medium">Minutes</div>
+                      </div>
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gold/30">
+                        <div className="text-3xl md:text-4xl font-bold text-gold" id="home-seconds">00</div>
+                        <div className="text-sm text-white font-medium">Seconds</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

@@ -6,7 +6,8 @@ import { saveAs } from 'file-saver';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import SkeletonLoader from '@/app/components/skeletonLoader';
-import { FaUsers, FaNewspaper, FaChartLine, FaBars, FaTimes, FaSpinner } from 'react-icons/fa';
+import TipTapEditor from '@/app/components/TipTapEditor';
+import { FaUsers, FaNewspaper, FaChartLine, FaBars, FaTimes, FaSpinner, FaCalendarAlt } from 'react-icons/fa';
 import useSWR from 'swr';
 
 // Place fetcher at the top
@@ -58,6 +59,23 @@ const Dashboard = () => {
   });
   const [showBlogPreview, setShowBlogPreview] = useState(false);
   const fileInputRef = useRef(null);
+
+  // Event Management States
+  const [isEventModalOpen, setIsEventModalOpen] = useState(false);
+  const [eventForm, setEventForm] = useState({
+    title: '',
+    event_date: '',
+    event_time: '',
+    host: '',
+    location: '',
+    description: '',
+    recurring: 'none',
+    image: null as File | null,
+  });
+  const [events, setEvents] = useState<any[]>([]);
+  const [isEditEventModalOpen, setIsEditEventModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  const [eventSuccessMessage, setEventSuccessMessage] = useState<string | null>(null);
 
   const [blogs, setBlogs] = useState<any[]>([]);
   const [isEditBlogModalOpen, setIsEditBlogModalOpen] = useState(false);
@@ -460,6 +478,9 @@ const Dashboard = () => {
     if (activeMenu === 'blog') {
       fetchBlogs();
     }
+    if (activeMenu === 'events') {
+      fetchEvents();
+    }
   }, [activeMenu]);
 
   const fetchBlogs = async () => {
@@ -473,6 +494,145 @@ const Dashboard = () => {
       }
     } catch (error) {
       setError('Error fetching blogs');
+    }
+  };
+
+  // Event Management Functions
+  const fetchEvents = async () => {
+    try {
+      const response = await fetch('/api/create_event');
+      const data = await response.json();
+      if (data.success) {
+        setEvents(data.events);
+      } else {
+        setError('Failed to fetch events');
+      }
+    } catch (error) {
+      setError('Error fetching events');
+    }
+  };
+
+  const handleEventInputChange = (e: any) => {
+    const { name, value } = e.target;
+    setEventForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleEventImageChange = (e: any) => {
+    const file = e.target.files[0];
+    if (file) {
+      setEventForm((prev) => ({ ...prev, image: file }));
+    }
+  };
+
+  const handleOpenEventModal = () => {
+    setIsEventModalOpen(true);
+  };
+
+  const handleCloseEventModal = () => {
+    setIsEventModalOpen(false);
+    setEventForm({ title: '', event_date: '', event_time: '', host: '', location: '', description: '', recurring: 'none', image: null });
+  };
+
+  const handleCreateEvent = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('title', eventForm.title);
+      formData.append('event_date', eventForm.event_date);
+      formData.append('event_time', eventForm.event_time);
+      formData.append('host', eventForm.host);
+      formData.append('location', eventForm.location);
+      formData.append('description', eventForm.description);
+      formData.append('recurring', eventForm.recurring);
+      if (eventForm.image) {
+        formData.append('image', eventForm.image);
+      }
+
+      const response = await fetch('/api/create_event', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setEventSuccessMessage(data.message);
+        setIsEventModalOpen(false);
+        setEventForm({ title: '', event_date: '', event_time: '', host: '', location: '', description: '', recurring: 'none', image: null });
+        fetchEvents();
+        setTimeout(() => setEventSuccessMessage(null), 3000);
+      } else {
+        alert(data.error || 'Failed to create event');
+      }
+    } catch (error) {
+      console.error('Error creating event:', error);
+      alert('Failed to create event');
+    }
+  };
+
+  const handleEditEvent = (event: any) => {
+    setSelectedEvent(event);
+    setIsEditEventModalOpen(true);
+  };
+
+  const handleUpdateEvent = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('id', selectedEvent.id);
+      formData.append('title', selectedEvent.title);
+      formData.append('event_date', selectedEvent.event_date);
+      formData.append('event_time', selectedEvent.event_time || '12:00');
+      formData.append('host', selectedEvent.host);
+      formData.append('location', selectedEvent.location);
+      formData.append('description', selectedEvent.description);
+      formData.append('recurring', selectedEvent.recurring || 'none');
+      formData.append('current_image_url', selectedEvent.image_url || '');
+      
+      if (selectedEvent.image) {
+        formData.append('image', selectedEvent.image);
+      }
+      
+      if (selectedEvent.image_url === '') {
+        formData.append('delete_image', 'true');
+      }
+
+      const response = await fetch('/api/create_event', {
+        method: 'PUT',
+        body: formData,
+      });
+      
+      const data = await response.json();
+      if (data.success) {
+        setEventSuccessMessage(data.message);
+        setIsEditEventModalOpen(false);
+        fetchEvents();
+        setTimeout(() => setEventSuccessMessage(null), 3000);
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      alert('Failed to update event');
+    }
+  };
+
+  const handleDeleteEvent = async (id: number, image_url?: string) => {
+    if (!window.confirm("Are you sure you want to delete this event?")) return;
+
+    try {
+      const response = await fetch('/api/create_event', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, image_url }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setEventSuccessMessage(data.message);
+        fetchEvents();
+        setTimeout(() => setEventSuccessMessage(null), 3000);
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      alert('Failed to delete event');
     }
   };
 
@@ -771,6 +931,15 @@ const Dashboard = () => {
           >
             <FaUsers className="text-xl" />
             {isSidebarOpen && <span className="ml-4">User Stories</span>}
+          </button>
+
+          <button
+            onClick={() => setActiveMenu('events')}
+            className={`flex items-center px-4 py-3 w-full rounded-lg transition-colors font-medium mb-2
+              ${activeMenu === 'events' ? 'bg-gold text-black' : 'bg-transparent text-brown hover:bg-brown/10'}`}
+          >
+            <FaCalendarAlt className="text-xl" />
+            {isSidebarOpen && <span className="ml-4">Events</span>}
           </button>
         </nav>
       </div>
@@ -1981,6 +2150,121 @@ const Dashboard = () => {
               )}
             </div>
           )}
+
+          {/* Events Section */}
+          {activeMenu === 'events' && (
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl text-yellow-500 font-semibold">Events Management</h2>
+                <button
+                  className="bg-gold text-black px-4 py-2 rounded-lg hover:bg-gold/90 transition-colors"
+                  onClick={handleOpenEventModal}
+                >
+                  Create Event
+                </button>
+              </div>
+
+              {/* Event Success Message */}
+              {eventSuccessMessage && (
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
+                  {eventSuccessMessage}
+                </div>
+              )}
+
+              {/* Events Table */}
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recurring</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Host</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {events.map((event) => (
+                      <tr key={event.id}>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          {event.image_url ? (
+                            <img 
+                              src={event.image_url} 
+                              alt={event.title}
+                              className="w-16 h-16 object-cover rounded border"
+                            />
+                          ) : (
+                            <div className="w-16 h-16 bg-gray-200 rounded border flex items-center justify-center">
+                              <span className="text-gray-400 text-xs">No Image</span>
+                            </div>
+                          )}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{event.title}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <div>
+                            <div className="font-medium">{new Date(event.event_date).toLocaleDateString()}</div>
+                            <div className="text-gray-500 text-xs">{event.event_time || '12:00'}</div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            event.recurring === 'none' ? 'bg-gray-100 text-gray-600' :
+                            event.recurring === 'weekly' ? 'bg-blue-100 text-blue-600' :
+                            event.recurring === 'monthly' ? 'bg-green-100 text-green-600' :
+                            'bg-purple-100 text-purple-600'
+                          }`}>
+                            {event.recurring === 'none' ? 'None' :
+                             event.recurring === 'weekly' ? 'Weekly' :
+                             event.recurring === 'monthly' ? 'Monthly' :
+                             event.recurring === 'yearly' ? 'Yearly' : 'None'}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{event.host}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{event.location}</td>
+                        <td className="px-6 py-4 text-sm text-gray-900">
+                          <div className="max-w-xs">
+                            <div 
+                              className="truncate"
+                              dangerouslySetInnerHTML={{ __html: event.description }}
+                            />
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          {new Date(event.created_at).toLocaleDateString()}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                          <button
+                            onClick={() => handleEditEvent(event)}
+                            className="text-blue-600 hover:text-blue-900 mr-3"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteEvent(event.id, event.image_url)}
+                            className="text-red-600 hover:text-red-900"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* No Events Message */}
+              {events.length === 0 && (
+                <div className="text-center py-8 text-gray-500">
+                  <div className="text-4xl mb-2">📅</div>
+                  <div>No events found. Create your first event!</div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -2411,6 +2695,310 @@ const Dashboard = () => {
                   )}
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Create Event Modal */}
+      {isEventModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+            {/* Modal Header - Fixed */}
+            <div className="p-6 border-b bg-white rounded-t-2xl flex-shrink-0">
+              <button
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl"
+                onClick={handleCloseEventModal}
+              >
+                &times;
+              </button>
+              <h3 className="text-2xl text-yellow-500 font-bold">Create Event</h3>
+            </div>
+            {/* Modal Body - Scrollable */}
+            <div className="flex-1 overflow-y-auto p-6">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-black font-medium mb-2">Title *</label>
+                  <input
+                    type="text"
+                    name="title"
+                    value={eventForm.title}
+                    onChange={handleEventInputChange}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    placeholder="Event Title"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-black font-medium mb-2">Event Date *</label>
+                  <input
+                    type="date"
+                    name="event_date"
+                    value={eventForm.event_date}
+                    onChange={handleEventInputChange}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-black font-medium mb-2">Event Time *</label>
+                  <input
+                    type="time"
+                    name="event_time"
+                    value={eventForm.event_time}
+                    onChange={handleEventInputChange}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-black font-medium mb-2">Recurring</label>
+                  <select
+                    name="recurring"
+                    value={eventForm.recurring}
+                    onChange={handleEventInputChange}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                  >
+                    <option value="none">No Recurring</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-black font-medium mb-2">Host *</label>
+                  <input
+                    type="text"
+                    name="host"
+                    value={eventForm.host}
+                    onChange={handleEventInputChange}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    placeholder="Event Host"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-black font-medium mb-2">Location *</label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={eventForm.location}
+                    onChange={handleEventInputChange}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    placeholder="Event Location"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-black font-medium mb-2">Description</label>
+                  <TipTapEditor
+                    content={eventForm.description}
+                    onChange={(content) => setEventForm((prev: any) => ({ ...prev, description: content }))}
+                    placeholder="Event Description..."
+                    className="w-full text-black"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-black font-medium mb-2">Event Image</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleEventImageChange}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                  />
+                  {eventForm.image && (
+                    <div className="mt-2 text-sm text-gray-600">
+                      Selected: {eventForm.image.name}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            
+            {/* Modal Footer - Fixed */}
+            <div className="p-6 border-t bg-white rounded-b-2xl flex-shrink-0">
+              <div className="flex justify-end gap-3">
+                <button
+                  className="px-6 py-3 text-black bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors font-medium"
+                  onClick={handleCloseEventModal}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="px-6 py-3 bg-gold text-black rounded-lg hover:bg-gold/90 transition-colors font-medium"
+                  onClick={handleCreateEvent}
+                >
+                  Create Event
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Event Modal */}
+      {isEditEventModalOpen && selectedEvent && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+            {/* Modal Header - Fixed */}
+            <div className="p-6 border-b bg-white rounded-t-2xl flex-shrink-0">
+              <button
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl"
+                onClick={() => setIsEditEventModalOpen(false)}
+              >
+                &times;
+              </button>
+              <h3 className="text-2xl text-yellow-500 font-bold">Edit Event</h3>
+            </div>
+            {/* Modal Body - Scrollable */}
+            <div className="flex-1 overflow-y-auto p-6">
+              <div className="space-y-4">
+                                <div>
+                  <label className="block text-black font-medium mb-2">Title *</label>
+                  <input
+                    type="text"
+                    name="title"
+                    value={selectedEvent.title}
+                    onChange={(e) => setSelectedEvent({...selectedEvent, title: e.target.value})}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    required
+                  />
+                </div>
+                            <div>
+                  <label className="block text-black font-medium mb-2">Event Date *</label>
+                  <input
+                    type="date"
+                    name="event_date"
+                    value={selectedEvent.event_date}
+                    onChange={(e) => setSelectedEvent({...selectedEvent, event_date: e.target.value})}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    required
+                  />
+                </div>
+                            <div>
+                  <label className="block text-black font-medium mb-2">Event Time *</label>
+                  <input
+                    type="time"
+                    name="event_time"
+                    value={selectedEvent.event_time || '12:00'}
+                    onChange={(e) => setSelectedEvent({...selectedEvent, event_time: e.target.value})}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    required
+                  />
+                </div>
+                            <div>
+                  <label className="block text-black font-medium mb-2">Recurring</label>
+                  <select
+                    name="recurring"
+                    value={selectedEvent.recurring || 'none'}
+                    onChange={(e) => setSelectedEvent({...selectedEvent, recurring: e.target.value})}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                  >
+                    <option value="none">No Recurring</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                  </select>
+                </div>
+                            <div>
+                  <label className="block text-black font-medium mb-2">Host *</label>
+                  <input
+                    type="text"
+                    name="host"
+                    value={selectedEvent.host}
+                    onChange={(e) => setSelectedEvent({...selectedEvent, host: e.target.value})}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    required
+                  />
+                </div>
+                            <div>
+                  <label className="block text-black font-medium mb-2">Location *</label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={selectedEvent.location}
+                    onChange={(e) => setSelectedEvent({...selectedEvent, location: e.target.value})}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    required
+                  />
+                </div>
+                            <div>
+                  <label className="block text-black font-medium mb-2">Description</label>
+                  <div className="border border-gray-300 rounded-lg overflow-hidden">
+                    <TipTapEditor
+                      content={selectedEvent.description}
+                      onChange={(content) => setSelectedEvent((prev: any) => ({ ...prev, description: content }))}
+                      placeholder="Event Description..."
+                      className="w-full text-black"
+                    />
+                  </div>
+                </div>
+                            <div>
+                  <label className="block text-black font-medium mb-2">Event Image</label>
+                  {selectedEvent.image_url && (
+                    <div className="mb-4 p-4 bg-gray-50 rounded-lg border">
+                      <p className="text-sm text-gray-600 mb-3 font-medium">Current Image:</p>
+                      <div className="flex items-center gap-4">
+                        <img 
+                          src={selectedEvent.image_url} 
+                          alt="Current event image" 
+                          className="w-32 h-32 object-cover rounded-lg border shadow-sm"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setSelectedEvent({...selectedEvent, image_url: ''})}
+                          className="px-4 py-2 text-sm bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                        >
+                          Remove Image
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        setSelectedEvent({...selectedEvent, image: file});
+                      }
+                    }}
+                    className="w-full border border-gray-300 text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                  />
+                  {selectedEvent.image && (
+                    <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                      <p className="text-sm text-blue-700 font-medium">
+                        New image selected: {selectedEvent.image.name}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            
+            {/* Modal Footer - Fixed */}
+            <div className="p-6 border-t bg-white rounded-b-2xl flex-shrink-0">
+              <div className="flex justify-end gap-3">
+                <button
+                  className="px-6 py-3 text-black bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors font-medium"
+                  onClick={() => setIsEditEventModalOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="px-6 py-3 bg-gold text-black rounded-lg hover:bg-gold/90 transition-colors font-medium"
+                  onClick={handleUpdateEvent}
+                >
+                  Save Changes
+                </button>
+              </div>
             </div>
           </div>
         </div>

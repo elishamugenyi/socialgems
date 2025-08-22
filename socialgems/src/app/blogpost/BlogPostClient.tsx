@@ -354,8 +354,8 @@ export default function BlogPost() {
             case 'facebook':
               shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(storyUrl)}`;
               break;
-            case 'twitter':
-              shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(storyUrl)}&text=${encodeURIComponent(storyTitle)}`;
+            case 'X':
+              shareUrl = `https://X.com/intent/x?url=${encodeURIComponent(storyUrl)}&text=${encodeURIComponent(storyTitle)}`;
               break;
             case 'linkedin':
               shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(storyUrl)}`;
@@ -1145,10 +1145,10 @@ export default function BlogPost() {
                               <span className="text-blue-600 text-lg">📘</span> Facebook
                             </button>
                             <button
-                              onClick={() => handleShare(currentStory.story_id, 'twitter')}
+                              onClick={() => handleShare(currentStory.story_id, 'X')}
                               className="w-full text-left px-3 py-2 text-sm hover:bg-blue-50 rounded flex items-center gap-2 text-gray-700 hover:text-blue-400 transition-colors"
                             >
-                              <span className="text-blue-400 text-lg">🐦</span> Twitter
+                              <span className="text-blue-400 text-lg">🐦</span> X
                             </button>
                             <button
                               onClick={() => handleShare(currentStory.story_id, 'linkedin')}
