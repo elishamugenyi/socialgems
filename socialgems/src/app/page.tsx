@@ -66,7 +66,13 @@ export default function Home() {
         // Find closest upcoming event
         const currentDate = new Date();
         const currentEvents = data.events.filter((event: Event) => new Date(event.event_date) >= currentDate);
-        setClosestEvent(currentEvents.length > 0 ? currentEvents[0] : null);
+        
+        // Sort events by date to get the truly closest one
+        const sortedEvents = currentEvents.sort((a: Event, b: Event) => 
+          new Date(a.event_date).getTime() - new Date(b.event_date).getTime()
+        );
+        
+        setClosestEvent(sortedEvents.length > 0 ? sortedEvents[0] : null);
       }
     } catch (error) {
       console.error('Error fetching events:', error);
@@ -74,6 +80,16 @@ export default function Home() {
       setLoading(false);
     }
   };
+
+  // Periodic event checking to handle dynamic updates
+  useEffect(() => {
+    // Check for new events every 5 minutes
+    const eventCheckInterval = setInterval(() => {
+      fetchEvents();
+    }, 5 * 60 * 1000); // 5 minutes
+
+    return () => clearInterval(eventCheckInterval);
+  }, []);
 
   // Countdown timer effect
   useEffect(() => {
@@ -119,7 +135,7 @@ export default function Home() {
         if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
         if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
       } else {
-        // Event has passed
+        // Event has passed - check if we need to update to next event
         const daysEl = document.getElementById('home-days');
         const hoursEl = document.getElementById('home-hours');
         const minutesEl = document.getElementById('home-minutes');
@@ -129,6 +145,11 @@ export default function Home() {
         if (hoursEl) hoursEl.textContent = '00';
         if (minutesEl) minutesEl.textContent = '00';
         if (secondsEl) secondsEl.textContent = '00';
+        
+        // Trigger event refresh to get next upcoming event
+        setTimeout(() => {
+          fetchEvents();
+        }, 1000);
       }
     };
 
@@ -267,6 +288,33 @@ export default function Home() {
                 </div>
               </div>
             )}
+
+            {/* No Events Message */}
+            {!closestEvent && !loading && (
+              <div className="mt-8 w-full flex justify-center" data-aos="fade-up">
+                <div className="bg-black/60 backdrop-blur-sm rounded-2xl p-6 border border-gold/30 text-center">
+                  <div className="text-4xl mb-4">📅</div>
+                  <h3 className="text-xl font-semibold text-white mb-2">No Upcoming Events</h3>
+                  <p className="text-white/80 text-base">
+                    Check back soon for exciting new events and experiences!
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Beautiful Button Section */}
+            <div className="mt-8 w-full flex justify-center" data-aos="fade-up" data-aos-delay="300">
+              <Link
+                href="https://web.socialgems.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-gold to-brown rounded-md shadow-2xl hover:shadow-gold/25 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border-2 border-transparent hover:border-white/30 overflow-hidden"
+              >
+                <span className="relative z-10">Visit Web for Business</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-brown to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-gold to-brown group-hover:animate-pulse"></div>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -405,12 +453,12 @@ export default function Home() {
                   Ready to take your influence to the next level? 
                   Join our influencers list and start earning today!
                 </p>
-                <Link
+                {/*<Link
                   href="/influencers" //link to join influencers
                   className="inline-block bg-gold text-white px-6 py-2 rounded-full font-bold  hover:text-black hover:bg-white hover:border-2 hover:border-[#FFD700] hover:bg-opacity-90 transition duration-300 transition-colors transition-colors"
                 >
                   Join Influencers List
-                </Link>
+                </Link>*/}
                 <p className="text-black mt-4">
                   Download the Social Gems app now and start earning Gem Points:
                 </p>
@@ -453,12 +501,12 @@ export default function Home() {
                   <li>Track campaign performance in real-time.</li>
                   <li>Maximize ROI with data-driven insights.</li>
                 </ul>
-                <Link
+                {/*<Link
                   href="/signup" // Replace with the actual link to join brands
                   className="inline-block bg-gold text-white px-6 py-2 rounded-full font-bold hover:text-black hover:bg-white hover:border-2 hover:border-[#FFD700] hover:bg-opacity-90 transition duration-300 transition-colors"
                 >
                   Join Brands List
-                </Link>
+                </Link>*/}
                 <p className="text-black mt-4">
                   Download the Social Gems app to manage your campaigns 
                   and connect with influencers on the go:
@@ -519,17 +567,14 @@ export default function Home() {
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/signup"
+                href="https://web.socialgems.me"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-4 sm:px-6 py-2 bg-white text-black rounded-full hover:bg-black hover:text-white transition-colors text-sm sm:text-base"
               >
-                FOR BRANDS
+                Visit Web for Business
               </Link>
-              <Link
-                href="/influencers"
-                className="px-4 sm:px-6 py-2 bg-black text-white rounded-full border border-white hover:bg-brown hover:text-white transition-colors text-sm sm:text-base"
-              >
-                FOR INFLUENCERS
-              </Link>
+
           </div>
         </div>
       </section>
