@@ -6,60 +6,66 @@ import Footer from "../components/footer";
 export default function TermsofUse() {
 
     return(
-        <div className="min-h-screen flex flex-col bg-gray-100">
+        <div className="min-h-screen flex flex-col bg-gray-50">
             <Navbar />
-            <div className="flex-grow p-4 sm:p-6">
-                <div className="max-w-4xl mx-auto bg-white p-4 sm:p-8 rounded-lg shadow-lg">
-                    <section className="mb-6 sm:mb-8 text-black">
-                        <h1 className="text-2xl sm:text-3xl font-bold text-gold mb-6">Terms of Use</h1>
+            <div className="flex-grow py-8 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg">
+                    <section className="px-8 py-12 sm:px-12 sm:py-16">
+                        <div className="text-center mb-12 pb-8 border-b border-gray-200">
+                            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Terms of Use</h1>
+                        </div>
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">PLEASE READ THESE TERMS CAREFULLY</h2>
-                            <p className="mb-4">
-                                BY CLICKING ON THE "ACCEPT" BUTTON BELOW YOU AGREE TO THESE TERMS WHICH WILL BIND YOU.
-                            </p>
-                            <p className="mb-4">
-                                IF YOU DO NOT AGREE TO THESE TERMS, CLICK ON THE "REJECT" BUTTON BELOW.
-                            </p>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">PLEASE READ THESE TERMS CAREFULLY</h2>
+                            <div className="bg-gray-50 border-l-4 border-gray-200 p-4 rounded-md space-y-3">
+                                <p className="text-gray-700 leading-relaxed">
+                                    BY CLICKING ON THE "ACCEPT" BUTTON BELOW YOU AGREE TO THESE TERMS WHICH WILL BIND YOU.
+                                </p>
+                                <p className="text-gray-700 leading-relaxed">
+                                    IF YOU DO NOT AGREE TO THESE TERMS, CLICK ON THE "REJECT" BUTTON BELOW.
+                                </p>
+                            </div>
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">Who we are and what this agreement does</h2>
-                            <p className="mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Who we are and what this agreement does</h2>
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 We TEK JUICE LIMITED, a Company registered in England and Wales with Company Number 14997926, 
                                 whose registered address is 19 The Office Village, North Road, Loughborough, Leicestershire, 
                                 England, LE11 1QJ ("trading as Social Gems") license you to use:
                             </p>
-                            <ul className="list-disc pl-6 mb-4">
+                            <ul className="list-disc bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">
                                 <li>Social Gems mobile application software (App) and any updates or supplements to it.</li>
-                                <li>The service you connect to via the App and the content we provide to you through it (Service).</li>
+                                <li>The service you connect to via the App and the content we provide to you through it (Service) as permitted in these terms.</li>
                             </ul>
-                            <p>as permitted in these terms.</p>
+                            
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">Your privacy</h2>
-                            <p>
-                                Under data protection legislation, we are required to provide 
-                                you with certain information including who we are, how we 
-                                process your personal data and for what purposes and your 
-                                rights in relation to your personal data and how to exercise them. 
-                                This information is provided in our Privacy Notice and it is important 
-                                that you read that information.
-                            </p>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Your privacy</h2>
+                            <div className="p-4 rounded-md">
+                                <p className="text-gray-700">
+                                    Under data protection legislation, we are required to provide 
+                                    you with certain information including who we are, how we 
+                                    process your personal data and for what purposes and your 
+                                    rights in relation to your personal data and how to exercise them. 
+                                    This information is provided in our Privacy Notice and it is important 
+                                    that you read that information.
+                                </p>
+                            </div>
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">Other terms that may apply to you</h2>
-                            <p className="mb-4">The following documents also form part of these terms:</p>
-                            <ul className="list-disc pl-6 mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Other terms that may apply to you</h2>
+                            <p className="mb-4 text-gray-700 leading-relaxed">The following documents also form part of these terms:</p>
+                            <ul className="list-disc bg-gray-50 border-l-4 border-gray-400 p-4 rounded-md text-gray-700 pl-6 mb-4">
                                 <li>Our Cookie Policy, which sets out information about the cookies used by the App.</li>
                                 <li>Our Influencer or Business Agreements relating to applicable services provided through the App.</li>
                             </ul>
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">Google Play and the APP Store's terms also apply</h2>
-                            <p>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Google Play and the APP Store's terms also apply</h2>
+                            <p className="text-gray-700 leading-relaxed">
                                 The ways in which you can use the App and Documentation may also be controlled by Google Pay or 
                                 The App stores' rules and policies and those policies will apply instead of these terms where 
                                 there are differences between the two.
@@ -67,43 +73,43 @@ export default function TermsofUse() {
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">Support for the App and how to tell us about problems</h2>
-                            <h3 className="font-bold mb-2">Support.</h3>
-                            <p className="mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Support for the App and how to tell us about problems</h2>
+                            <h3 className="font-bold text-gray-900 mb-2">Support.</h3>
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 If you want to learn more about the App or the Service or have any problems using them please take a look at our support resources.
                             </p>
-                            <h3 className="font-bold mb-2">Contacting us (including with complaints).</h3>
-                            <p className="mb-4">
-                                If you think the App or the Services are faulty or misdescribed or wish to contact us for any other reason please email our customer service team at <a href="mailto:wensi@tekjuice.co.uk" className="text-gold">wensi@tekjuice.co.uk</a>.
+                            <h3 className="font-bold text-gray-900 mb-2">Contacting us (including with complaints).</h3>
+                            <p className="mb-4 text-gray-700 leading-relaxed">
+                                If you think the App or the Services are faulty or misdescribed or wish to contact us for any other reason please email our customer service team at <a href="mailto:wensi@tekjuice.co.uk" className="text-black bg-blue-100 px-2 py-2 rounded-md hover:bg-blue-500 hover:text-white">wensi@tekjuice.co.uk</a>.
                             </p>
-                            <h3 className="font-bold mb-2">How we will communicate with you.</h3>
-                            <p>
+                            <h3 className="font-bold text-gray-900 mb-2">How we will communicate with you.</h3>
+                            <p className="text-gray-700 leading-relaxed">
                                 If we have to contact you we will do so by email, by SMS using the contact details you have provided to us.
                             </p>
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">How you may use the App, including how many devices you may use it on</h2>
-                            <p className="mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">How you may use the App, including how many devices you may use it on</h2>
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 In return for your agreeing to comply with these terms you may:
                             </p>
-                            <ul className="list-disc pl-6 mb-4">
-                                <li>download or stream a copy of the App and view, use and display the App and the Service on such devices for your personal purposes only.</li>
-                                <li>use any Documentation to support your permitted use of the App and the Service.</li>
-                                <li>receive and use any free supplementary software code or update of the App incorporating "patches" and corrections of errors as we may provide to you.</li>
+                            <ul className="list-disc bg-gray-50 border-l-4 border-gray-400 p-4 rounded-md text-gray-700 pl-6 mb-4">
+                                <li>Download or stream a copy of the App and view, use and display the App and the Service on such devices for your personal purposes only.</li>
+                                <li>Use any Documentation to support your permitted use of the App and the Service.</li>
+                                <li>Receive and use any free supplementary software code or update of the App incorporating "patches" and corrections of errors as we may provide to you.</li>
                             </ul>
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">You must be 18 or have parental or guardian consent to accept these terms and buy the App</h2>
-                            <p>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">You must be 18 or have parental or guardian consent to accept these terms and buy the App</h2>
+                            <p className="text-gray-700 leading-relaxed">
                                 You must be 18 or over or have parental or guardian consent to accept these terms and utilise the App.
                             </p>
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">You may not transfer the App to someone else</h2>
-                            <p className="mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">You may not transfer the App to someone else</h2>
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 We are giving you personally the right to use the App and the Service as set out above, 
                                 you may not otherwise transfer the App or the Service to someone else, 
                                 whether for money, for anything else or for free. 
@@ -112,42 +118,42 @@ export default function TermsofUse() {
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">Changes to these terms</h2>
-                            <p className="mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Changes to these terms</h2>
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 We may need to change these terms to reflect changes in law or best 
                                 practice or to deal with additional features which we introduce.
                             </p>
-                            <p className="mb-4">
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 We will give you at least 30 days' notice of any change by sending 
                                 you an SMS with details of the change or notifying you of a change 
                                 when you next start the App.
                             </p>
-                            <p>
+                            <p className="text-gray-700 leading-relaxed">
                                 If you do not accept the notified changes you will not be permitted 
                                 to continue to use the App and the Service.
                             </p>
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">Update to the App and changes to the Service</h2>
-                            <p className="mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Update to the App and changes to the Service</h2>
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 From time to time we may automatically update the App and change the 
                                 Service to improve performance, enhance functionality, 
                                 reflect changes to the operating system or address security issues. 
                                 Alternatively we may ask you to update the App for these reasons.
                             </p>
-                            <p className="mb-4">
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 If you choose not to install such updates or if you opt out of automatic updates 
                                 you may not be able to continue using the App and the Services.
                             </p>
-                            <p>
+                            <p className="text-gray-700 leading-relaxed">
                                 The App will always match the description of it provided to you when you bought it.
                             </p>
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">If someone else owns the phone or device you are using</h2>
-                            <p>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">If someone else owns the phone or device you are using</h2>
+                            <p className="text-gray-700 leading-relaxed">
                                 If you download or stream the App onto any phone or other device 
                                 not owned by you, you must have the owner's permission to do so. 
                                 You will be responsible for complying with these terms, whether 
@@ -156,14 +162,14 @@ export default function TermsofUse() {
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">We are not responsible for other websites you link to</h2>
-                            <p className="mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">We are not responsible for other websites you link to</h2>
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 The App or any Service may contain links to other independent websites 
                                 which are not provided by us. Such independent sites are not under our control, 
                                 and we are not responsible for and have not checked and approved their content 
                                 or their privacy policies (if any).
                             </p>
-                            <p>
+                            <p className="text-gray-700 leading-relaxed">
                                 You will need to make your own independent judgement about whether to 
                                 use any such independent sites, including whether to buy any products 
                                 or services offered by them.
@@ -171,20 +177,20 @@ export default function TermsofUse() {
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">Licence restrictions</h2>
-                            <p className="mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Licence restrictions</h2>
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 You agree that you will:
                             </p>
                             <ul className="list-disc pl-6 mb-4">
-                                <li>not rent, lease, sub-license, loan, provide, or otherwise make available, 
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">Not rent, lease, sub-license, loan, provide, or otherwise make available, 
                                     the App or the Services in any form, in whole or in part to any person 
                                     without prior written consent from us;</li>
-                                <li>not copy the App, Documentation or Services, 
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">Not copy the App, Documentation or Services, 
                                     except as part of the normal use of the App 
                                     or where it is necessary for the purpose of 
                                     back-up or operational security;
                                     </li>
-                                <li>not translate, merge, adapt, vary, alter or modify, 
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">Not translate, merge, adapt, vary, alter or modify, 
                                     the whole or any part of the App, Documentation 
                                     or Services nor permit the App or the Services 
                                     or any part of them to be combined with, or become 
@@ -192,8 +198,8 @@ export default function TermsofUse() {
                                     necessary to use the App and the Services on 
                                     devices as permitted in these terms;
                                     </li>
-                                <li>
-                                not disassemble, de-compile, reverse engineer or 
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">
+                                Not disassemble, de-compile, reverse engineer or 
                                 create derivative works based on the whole or any part 
                                 of the App or the Services nor attempt to do any such things, 
                                 except to the extent that (by virtue of sections 50B and 296A 
@@ -202,62 +208,62 @@ export default function TermsofUse() {
                                 the information necessary to create an independent program that can be 
                                 operated with the App or with another program (Permitted Objective), 
                                 and provided that the information obtained by you during such activities:
-                                <ul className="list-disc pl-6 mt-2">
-                                    <li>is not disclosed or communicated without 
+                                <ul className="list-disc p-4 text-gray-700 pl-6 mt-2">
+                                    <li>Is not disclosed or communicated without 
                                         the Licensor's prior written consent 
                                         to any third party to whom it is not 
                                         necessary to disclose or communicate 
                                         it in order to achieve the Permitted 
                                         Objective; and
                                         </li>
-                                    <li>is not used to create any software that 
+                                    <li>Is not used to create any software that 
                                         is substantially similar in its expression 
                                         to the App;
                                         </li>
-                                    <li>is kept secure; and</li>
-                                    <li>is used only for the Permitted Objective;</li>
+                                    <li>Is kept secure; and</li>
+                                    <li>Is used only for the Permitted Objective;</li>
                                 </ul>
                                 </li>
-                                <li>comply with all applicable technology control or export laws and regulations that apply to the technology used or supported by the App or any Service.</li>
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">Comply with all applicable technology control or export laws and regulations that apply to the technology used or supported by the App or any Service.</li>
                             </ul>
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">Acceptable use restrictions</h2>
-                            <p className="mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Acceptable use restrictions</h2>
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 You must:
                             </p>
-                            <ul className="list-disc pl-6 mb-4">
-                                <li>
-                                    not use the App or any Service in any unlawful manner, 
+                            <ul className="list-disc p-4 text-gray-700 pl-6 mb-4">
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">
+                                    Not use the App or any Service in any unlawful manner, 
                                     for any unlawful purpose, or in any manner 
                                     inconsistent with these terms, or act fraudulently or 
                                     maliciously, for example, by hacking into or inserting 
                                     malicious code, such as viruses, or harmful data, 
                                     into the App, any Service or any operating system;
                                 </li>
-                                <li>
-                                    not infringe our intellectual property rights or 
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">
+                                    Not infringe our intellectual property rights or 
                                     those of any third party in relation to 
                                     your use of the App or any Service, 
-                                    including by the submission of any material] (to the extent 
+                                    including by the submission of any material (to the extent 
                                     that such use is not licensed by these terms);
                                 </li>
-                                <li>not transmit any material that is defamatory, 
+                                    <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">Not transmit any material that is defamatory, 
                                     offensive or otherwise objectionable in 
                                     relation to your use of the App or any Service;
                                     </li>
-                                <li>not use the App or any Service in a way 
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">Not use the App or any Service in a way 
                                     that could damage, disable, overburden, 
                                     impair or compromise our systems or security 
                                     or interfere with other users; and 
                                 </li>
-                                <li>
-                                    not use the App or any Service to harass, 
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">
+                                    Not use the App or any Service to harass, 
                                     abuse, stalk, threaten or defame any person 
                                     or entity or to post any objectionable content;
                                 </li>
-                                <li>not collect or harvest any information or data from 
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">Not collect or harvest any information or data from 
                                     any Service or our systems or attempt to 
                                     decipher any transmissions to or from the servers running any Service.
                                 </li>
@@ -265,8 +271,8 @@ export default function TermsofUse() {
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">Intellectual property rights</h2>
-                            <p>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Intellectual property rights</h2>
+                            <p className="text-gray-700 leading-relaxed">
                                 All intellectual property rights in the App, 
                                 the Documentation and the Services throughout 
                                 the world belong to us [(or our licensors)] and 
@@ -279,17 +285,17 @@ export default function TermsofUse() {
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">
                                 Our responsibility for loss or damage suffered by you
                             </h2>
-                            <p className="mb-4">
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 <strong>We are not responsible to you for non- foreseeable 
                                     loss and damage caused by us.</strong> Loss or damage 
                                     is foreseeable if either it is obvious that it will 
                                     happen or if, at the time you accepted these terms, 
                                     both we and you knew it was likely to happen.
                             </p>
-                            <p className="mb-4">
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 <strong>We do not exclude or limit in any way our liability 
                                     to you where it would be unlawful to do so.</strong> 
                                     This includes liability for death or personal 
@@ -297,44 +303,50 @@ export default function TermsofUse() {
                                     of our employees, agents or subcontractors or for 
                                     fraud or fraudulent misrepresentation.
                             </p>
-                            <p className="mb-4">
-                                <strong>When we are liable for damage to your property.</strong> We will not be liable for damage that you could have avoided by following our advice to apply an update offered to you free of charge or for damage that was caused by you failing to correctly follow installation instructions or to have in place the minimum system requirements advised by us.
+                            <p className="mb-4 text-gray-700 leading-relaxed">
+                                <strong>When we are liable for damage to your property.</strong> 
+                                    Tek Juice, through its Social Gems platform, acts solely as 
+                                    an intermediary connecting brands with influencers, and shall
+                                    not be held liable for influencer conduct or content, 
+                                    consequential damages, or disputes between parties, 
+                                    while brands and influencers agree to indemnify and hold Tek 
+                                    Juice harmless from any related claims or costs.
                             </p>
-                            <p className="mb-4">
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 <strong>We are not liable for business losses.</strong> If you use the App for any commercial, business or resale purpose we will have no liability to you for any loss of profit, loss of business, business interruption, or loss of business opportunity.
                             </p>
-                            <p className="mb-4">
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 <strong>Limitations to the App and the Services.</strong> The App and the Services are provided for general information and entertainment purposes only. They do not offer advice on which you should rely. You must obtain professional or specialist advice before taking, or refraining from, any action on the basis of information obtained from the App or the Service. Although we make reasonable efforts to update the information provided by the App and the Service, we make no representations, warranties or guarantees, whether express or implied, that such information is accurate, complete or up to date.
                             </p>
-                            <p className="mb-4">
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 <strong>Please back-up content and data used with the App.</strong> We recommend that you back up any content and data used in connection with the App, to protect yourself in case of problems with the App or the Service.
                             </p>
-                            <p className="mb-4">
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 <strong>Check that the App and the Services are suitable for you.</strong> The App and the Services have not been developed to meet your individual requirements. Please check that the facilities and functions of the App and the Services (as described on the appstore site and in the Documentation) meet your requirements.
                             </p>
-                            <p>
+                            <p className="text-gray-700 leading-relaxed">
                                 <strong>We are not responsible for events outside our control.</strong> If our provision of the Services or support for the App or the Services is delayed by an event outside our control then we will contact you as soon as possible to let you know and we will take steps to minimise the effect of the delay. Provided we do this we will not be liable for delays caused by the event but if there is a risk of substantial delay you may contact us to end your contract with us and receive a refund for any Services you have paid for but not received.
                             </p>
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">We may end your rights to use the App and the Services if you break these terms</h2>
-                            <p className="mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">We may end your rights to use the App and the Services if you break these terms</h2>
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 We may end your rights to use the App and Services at any time by contacting you if you have broken these terms in a serious way. If what you have done can be put right we will give you a reasonable opportunity to do so.
                             </p>
-                            <p className="mb-4">
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 If we end your rights to use the App and Services:
                             </p>
                             <ul className="list-disc pl-6 mb-4">
-                                <li>You must stop all activities authorised by these terms, including your use of the App and any Services.</li>
-                                <li>You must delete or remove the App from all devices in your possession and immediately destroy all copies of the App which you have and confirm to us that you have done this.</li>
-                                <li>We may remotely access your devices and remove the App from them and cease providing you with access to the Services.</li>
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">You must stop all activities authorised by these terms, including your use of the App and any Services.</li>
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">You must delete or remove the App from all devices in your possession and immediately destroy all copies of the App which you have and confirm to us that you have done this.</li>
+                                <li className="bg-green-50 border-l-4 border-green-400 p-4 rounded-md text-gray-700 pl-6 mb-4">We may remotely access your devices and remove the App from them and cease providing you with access to the Services.</li>
                             </ul>
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">We may transfer this agreement to someone else</h2>
-                            <p>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">We may transfer this agreement to someone else</h2>
+                            <p className="text-gray-700 leading-relaxed">
                                 We may transfer our rights and obligations under 
                                 these terms to another organisation. We will always 
                                 tell you in writing if this happens and we will ensure that the transfer will not affect your rights under the contract.
@@ -342,8 +354,8 @@ export default function TermsofUse() {
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">You need our consent to transfer your rights to someone else</h2>
-                            <p>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">You need our consent to transfer your rights to someone else</h2>
+                            <p className="text-gray-700 leading-relaxed">
                                 You may only transfer your rights or your 
                                 obligations under these terms to another 
                                 person if we agree in writing.
@@ -351,8 +363,8 @@ export default function TermsofUse() {
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">No rights for third parties</h2>
-                            <p>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">No rights for third parties</h2>
+                            <p className="text-gray-700 leading-relaxed">
                                 This agreement does not give rise to any rights under 
                                 the Contracts (Rights of Third Parties) 
                                 Act 1999 to enforce any term of this agreement.
@@ -360,11 +372,11 @@ export default function TermsofUse() {
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">
                                 If a court finds part of this contract illegal, 
                                 the rest will continue in force
                             </h2>
-                            <p className="mb-4">
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 Each of the paragraphs of these terms operates separately. 
                                 If any court or relevant authority decides that 
                                 any of them are unlawful, the remaining paragraphs 
@@ -373,11 +385,11 @@ export default function TermsofUse() {
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">
                                 Even if we delay in enforcing this contract, 
                                 we can still enforce it later
                                 </h2>
-                            <p className="mb-4">
+                            <p className="mb-4 text-gray-700 leading-relaxed">
                                 Even if we delay in enforcing this agreement, 
                                 we can still enforce it later. If we do not insist 
                                 immediately that you do anything you are required to 
@@ -390,11 +402,11 @@ export default function TermsofUse() {
                         </section>
 
                         <section className="mb-6">
-                            <h2 className="text-xl font-bold text-gold mb-4">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">
                                 Which laws apply to this agreement and where 
                                 you may bring legal proceedings
                             </h2>
-                            <p>
+                            <p className="text-gray-700 leading-relaxed">
                                 These terms are governed by English law and the courts 
                                 of England and Wales and Uganda shall have non-exclusive 
                                 jurisdiction to settle any dispute or claim 
