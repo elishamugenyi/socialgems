@@ -6,12 +6,13 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export async function POST(req: Request) {
+  let client;
   try {
     // Get the request body (email and password)
     const { email, password } = await req.json();
 
     // Find the admin in the database
-    const client = await db.connect();
+    client = await db.connect();
     const result = await client.sql`
       SELECT * FROM admins WHERE email = ${email}
     `;
@@ -42,5 +43,10 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error(error);
     return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
+  }
+  finally {
+    if (client) {
+      client.release();
+    }
   }
 }
