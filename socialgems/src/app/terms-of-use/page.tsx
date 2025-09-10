@@ -304,7 +304,7 @@ export default function TermsofUse() {
                                     fraud or fraudulent misrepresentation.
                             </p>
                             <p className="mb-4 text-gray-700 leading-relaxed">
-                                <strong>When we are liable for damage to your property.</strong> 
+                                <strong>We are not liable for damage to your property.</strong> 
                                     Tek Juice, through its Social Gems platform, acts solely as 
                                     an intermediary connecting brands with influencers, and shall
                                     not be held liable for influencer conduct or content, 
