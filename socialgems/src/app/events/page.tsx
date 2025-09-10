@@ -49,10 +49,35 @@ export default function EventsPage() {
   const [pastEvents, setPastEvents] = useState<Event[]>([]);
   const [closestEvent, setClosestEvent] = useState<Event | null>(null);
 
+  // Rotating hero images
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+  const heroImages = ['/hero1.jpg', '/hero2.jpg', '/hero3.jpg'];
+
+  // Modal state for gallery
+  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
+  const [selectedGalleryImages, setSelectedGalleryImages] = useState<string[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Grouped gallery images (3,3,3,2)
+  const galleryGroups = [
+    ['/Gem1.jpg', '/Gem2.jpg', '/Gem3.jpg'],
+    ['/Gem4.jpg', '/Gem5.jpg', '/Gem6.jpg'],
+    ['/Gem7.jpg', '/Gem8.jpg', '/Gem9.jpg'],
+    ['/Gem10.jpg', '/Gem11.jpg']
+  ];
+
   // Fetch events on component mount
   useEffect(() => {
     fetchEvents();
   }, []);
+
+  // Rotate hero every 3s
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeroIndex((prev) => (prev + 1) % heroImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
 
   // Process events when events state changes
   useEffect(() => {
@@ -309,23 +334,23 @@ export default function EventsPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <div className="relative h-screen min-h-[600px]">
-        <Image
-          src="/web-event-main.jpg"
-          alt="Events Hero"
-          fill
-          className="object-cover object-top"
-          priority
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+      <div className="relative h-screen min-h-[600px] overflow-hidden">
+        {heroImages.map((src, idx) => (
+          <Image
+            key={src}
+            src={src}
+            alt="Events Hero"
+            fill
+            className={`object-cover object-center transition-opacity duration-1000 ${idx === currentHeroIndex ? 'opacity-100' : 'opacity-0'}`}
+            priority={idx === 0}
+          />
+        ))}
+        {/* Softer overlay to keep image color visible */}
+        <div className="absolute inset-0 bg-black/25"></div>
+        {/* Content */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center text-white">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Upcoming Events
-            </h1>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto px-4">
-              Join us for exciting events and experiences. Reserve your spot today!
-            </p>
+          <div className="text-center text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]">
+            <h2 className="text-xl md:text-7xl font-bold max-w-3xl mx-auto px-4 mb-6">Join us for exciting events and experiences</h2>
           </div>
         </div>
       </div>
@@ -492,6 +517,45 @@ export default function EventsPage() {
         )}
       </div>
 
+      {/* Gallery Section - Gem Connect Event */}
+      <div className="mt-16">
+        <div className="container mx-auto px-4">
+          {/* Header and text content above gallery */}
+          <div id="gen-connect-overview" className="text-left mb-8 font-sans">
+            <h3 className="text-lg font-semibold text-gray-600 mb-2 font-sans">Gallery From Gen Connect Event</h3>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-sans">Gen Connect — Highlights</h2>
+            <p className="text-gray-700 max-w-4xl mb-6 font-sans leading-relaxed">
+              Gen Connect brought creators and communities together for a vibrant day of conversation,
+              collaboration, and creativity. From intimate networking moments to powerful panel discussions, the
+              energy was electric throughout. From creators and brands discovering new opportunities, to stories shared on the mic and off the stage.
+            </p>
+            
+            <p className="text-gray-700 max-w-4xl font-sans leading-relaxed">
+              Visit the moments below in the gallery— each tile opens a mini-gallery. More videos and photos are
+              on the way. Thank you for being part of the story.
+            </p>
+          </div>
+
+          {/* Gallery tiles in one horizontal line */}
+          <div className="flex gap-4 justify-center overflow-x-auto mr-40 pb-4">
+            {galleryGroups.map((images, index) => (
+              <div
+                key={index}
+                className="relative w-[300px] h-[400px] rounded-lg overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex-shrink-0"
+                onClick={() => { setSelectedGalleryImages(images); setCurrentImageIndex(0); setIsGalleryModalOpen(true); }}
+              >
+                <Image
+                  src={images[0]}
+                  alt={`Event Gallery Tile ${index + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Past Events Section - White Background */}
       {pastEvents.length > 0 && (
         <div className="bg-white py-16">
@@ -508,7 +572,7 @@ export default function EventsPage() {
                       src={event.image_url}
                       alt={event.title}
                       fill
-                      className="object-cover"
+                      className="object-cover object-center"
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
@@ -524,7 +588,8 @@ export default function EventsPage() {
                     <button 
                       className="border-4 border-white text-white font-bold px-8 py-4 rounded-lg bg-transparent hover:bg-white hover:text-black transition-all duration-300 min-w-[120px]"
                       onClick={() => {
-                        // Button click handler - currently does nothing
+                        const el = document.getElementById('gen-connect-overview');
+                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }}
                     >
                       <span className="font-bold text-white hover:text-black">
@@ -553,6 +618,65 @@ export default function EventsPage() {
       >
         <FaArrowUp className="text-gray-600 text-xl" />
       </button>
+
+      {/* Gallery Modal */}
+      {isGalleryModalOpen && (
+        <div className="fixed inset-0 bg-black/75 flex items-center justify-center z-50 p-4" onClick={() => setIsGalleryModalOpen(false)}>
+          <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+            {/* Close */}
+            <button
+              onClick={() => setIsGalleryModalOpen(false)}
+              className="absolute top-4 right-4 z-10 bg-black/50 text-white rounded-full p-2 hover:bg-black/70"
+            >
+              ✕
+            </button>
+
+            {/* Main Image */}
+            <div className="relative bg-white rounded-lg overflow-hidden">
+              <Image
+                src={selectedGalleryImages[currentImageIndex]}
+                alt={`Gallery ${currentImageIndex + 1}`}
+                width={1200}
+                height={800}
+                className="w-full h-auto object-contain"
+              />
+            </div>
+
+            {/* Nav */}
+            {selectedGalleryImages.length > 1 && (
+              <>
+                <button
+                  onClick={() => setCurrentImageIndex((p) => (p - 1 + selectedGalleryImages.length) % selectedGalleryImages.length)}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-3 hover:bg-black/70"
+                >
+                  ‹
+                </button>
+                <button
+                  onClick={() => setCurrentImageIndex((p) => (p + 1) % selectedGalleryImages.length)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-3 hover:bg-black/70"
+                >
+                  ›
+                </button>
+              </>
+            )}
+
+            {/* Thumbs */}
+            {selectedGalleryImages.length > 1 && (
+              <div className="flex justify-center mt-4 gap-2">
+                {selectedGalleryImages.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImageIndex(idx)}
+                    className={`w-16 h-16 rounded-md overflow-hidden border ${idx === currentImageIndex ? 'border-white' : 'border-transparent'}`}
+                  >
+                    <Image src={img} alt={`Thumb ${idx + 1}`} width={64} height={64} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
