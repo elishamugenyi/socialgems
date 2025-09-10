@@ -536,12 +536,12 @@ export default function EventsPage() {
             </p>
           </div>
 
-          {/* Gallery tiles in one horizontal line */}
-          <div className="flex gap-4 justify-center overflow-x-auto mr-40 pb-4">
+          {/* Gallery tiles - horizontal on desktop, vertical on mobile */}
+          <div className="flex flex-col md:flex-row gap-4 justify-center overflow-x-auto md:mr-40 pb-4">
             {galleryGroups.map((images, index) => (
               <div
                 key={index}
-                className="relative w-[300px] h-[400px] rounded-lg overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex-shrink-0"
+                className="relative w-full md:w-[300px] h-[300px] md:h-[400px] rounded-lg overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex-shrink-0"
                 onClick={() => { setSelectedGalleryImages(images); setCurrentImageIndex(0); setIsGalleryModalOpen(true); }}
               >
                 <Image
@@ -621,55 +621,63 @@ export default function EventsPage() {
 
       {/* Gallery Modal */}
       {isGalleryModalOpen && (
-        <div className="fixed inset-0 bg-black/75 flex items-center justify-center z-50 p-4" onClick={() => setIsGalleryModalOpen(false)}>
-          <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-2 md:p-4" onClick={() => setIsGalleryModalOpen(false)}>
+          <div className="relative w-full h-full max-w-6xl max-h-[90vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
             {/* Close */}
             <button
               onClick={() => setIsGalleryModalOpen(false)}
-              className="absolute top-4 right-4 z-10 bg-black/50 text-white rounded-full p-2 hover:bg-black/70"
+              className="absolute top-2 right-2 z-10 bg-black/70 text-white rounded-full p-2 hover:bg-black/90 text-xl"
             >
               ✕
             </button>
 
-            {/* Main Image */}
-            <div className="relative bg-white rounded-lg overflow-hidden">
-              <Image
-                src={selectedGalleryImages[currentImageIndex]}
-                alt={`Gallery ${currentImageIndex + 1}`}
-                width={1200}
-                height={800}
-                className="w-full h-auto object-contain"
-              />
+            {/* Main Image Container */}
+            <div className="flex-1 flex items-center justify-center min-h-0">
+              <div className="relative w-full h-full max-w-full max-h-full">
+                <Image
+                  src={selectedGalleryImages[currentImageIndex]}
+                  alt={`Gallery ${currentImageIndex + 1}`}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                />
+              </div>
             </div>
 
-            {/* Nav */}
+            {/* Navigation */}
             {selectedGalleryImages.length > 1 && (
               <>
                 <button
                   onClick={() => setCurrentImageIndex((p) => (p - 1 + selectedGalleryImages.length) % selectedGalleryImages.length)}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-3 hover:bg-black/70"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-black/70 text-white rounded-full p-2 md:p-3 hover:bg-black/90 text-xl md:text-2xl"
                 >
                   ‹
                 </button>
                 <button
                   onClick={() => setCurrentImageIndex((p) => (p + 1) % selectedGalleryImages.length)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-3 hover:bg-black/70"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-black/70 text-white rounded-full p-2 md:p-3 hover:bg-black/90 text-xl md:text-2xl"
                 >
                   ›
                 </button>
               </>
             )}
 
-            {/* Thumbs */}
+            {/* Thumbnails */}
             {selectedGalleryImages.length > 1 && (
-              <div className="flex justify-center mt-4 gap-2">
+              <div className="flex justify-center mt-2 md:mt-4 gap-1 md:gap-2 overflow-x-auto pb-2">
                 {selectedGalleryImages.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setCurrentImageIndex(idx)}
-                    className={`w-16 h-16 rounded-md overflow-hidden border ${idx === currentImageIndex ? 'border-white' : 'border-transparent'}`}
+                    className={`w-12 h-12 md:w-16 md:h-16 rounded-md overflow-hidden border-2 flex-shrink-0 ${idx === currentImageIndex ? 'border-white' : 'border-gray-400'}`}
                   >
-                    <Image src={img} alt={`Thumb ${idx + 1}`} width={64} height={64} className="w-full h-full object-cover" />
+                    <Image 
+                      src={img} 
+                      alt={`Thumb ${idx + 1}`} 
+                      width={64} 
+                      height={64} 
+                      className="w-full h-full object-cover" 
+                    />
                   </button>
                 ))}
               </div>
