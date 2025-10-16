@@ -1,36 +1,29 @@
 'use client'
-import { useState } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
 export default function PrivacyPolicy() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [ isModalOpenPolicy, setIsModalOpenPolicy ] = useState(false);
-
-    const openModal = () => setIsModalOpen(true);
-    const openModalprivacy = () =>setIsModalOpenPolicy(true);
-    const closeModalPrivacy = () => setIsModalOpenPolicy(false);
-    const closeModal = () => setIsModalOpen(false);
 
     return(
         <div className="min-h-screen flex flex-col bg-gray-50">
+            <Navbar />
             
-            <div className="flex-grow py-8 px-4 sm:px-6 lg:px-8">
+            <div className="flex-grow py-4 sm:py-8 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
-                    <div className="px-8 py-12 sm:px-12 sm:py-16">
+                    <div className="px-4 py-6 sm:px-8 sm:py-12 lg:px-12 lg:py-16">
                         
                         {/* Header */}
-                        <div className="mb-2">
-                            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                        <div className="mb-4 sm:mb-6">
+                            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
                                 Social Gems Privacy Policy/Notice
                             </h3>
                         </div>
 
-                        <div className="mb-2">
-                            <h2 className="text-2xl font-bold text-gray-900 mr-10 mb-2">
+                        <div className="mb-4 sm:mb-6">
+                            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
                                 Introduction
                             </h2>
-                            <h1 className="text-lg font-bold text-gray-900 mr-10 mb-2">
+                            <h1 className="text-base sm:text-lg font-bold text-gray-900 mb-2">
                                 Last modified: 14 August 2025
                             </h1>
                         </div>
@@ -486,455 +479,491 @@ export default function PrivacyPolicy() {
                                         Delivery and improvement of our App and purchases &nbsp;
                                     </p>
 
-                                    <table className="table-auto border border-black text-black ml-5 mt-4">
-                                        <thead>
-                                            <tr className="bg-gray-100">
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Purpose or activity </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Type of personal data </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Lawful basis for processing </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To permit you to install the App and register you as a new App user 
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Identity<br />
-                                                    Contact <br />
-                                                    Financial <br />
-                                                    Device<br />
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legitimate interests (delivering our App to you)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To take steps towards providing you with services 
-                                                    at your request, to process and fulfil in-App 
-                                                    campaigns and deliver services to you, including managing 
-                                                    payments and sending you service communications 
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Identity <br />
-                                                    Contact <br />
-                                                    Transaction <br />
-                                                    Device<br />
-                                                    Location<br />
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Performance of a contract
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To provide you with your membership benefits, 
-                                                    fulfil campaigns or redemption of Gems within the App
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Identity <br />
-                                                    Contact <br />
-                                                    Transaction<br />
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Performance of a contract
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    Enforce our terms and conditions, including to 
-                                                    collect money owed to us by you
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Identity
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legitimate interests (to recover debts due to us) and legal obligation
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div className="overflow-x-auto -mx-4 sm:mx-0">
+                                        <div className="min-w-full px-4 sm:px-0">
+                                            <table className="w-full table-auto border border-black text-black text-sm sm:text-base">
+                                                <thead>
+                                                    <tr className="bg-gray-100">
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Purpose or activity</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[150px]">Type of personal data</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Lawful basis for processing</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To permit you to install the App and register you as a new App user 
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Identity<br />
+                                                            Contact <br />
+                                                            Financial <br />
+                                                            Device<br />
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legitimate interests (delivering our App to you)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To take steps towards providing you with services 
+                                                            at your request, to process and fulfil in-App 
+                                                            campaigns and deliver services to you, including managing 
+                                                            payments and sending you service communications 
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Identity <br />
+                                                            Contact <br />
+                                                            Transaction <br />
+                                                            Device<br />
+                                                            Location<br />
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Performance of a contract
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To provide you with your membership benefits, 
+                                                            fulfil campaigns or redemption of Gems within the App
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Identity <br />
+                                                            Contact <br />
+                                                            Transaction<br />
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Performance of a contract
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Enforce our terms and conditions, including to 
+                                                            collect money owed to us by you
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Identity
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legitimate interests (to recover debts due to us) and legal obligation
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
 
                                     {/* second table */}
                                     <p className="text-black text-lg font-bold ml-5 mt-4">
                                         Account management and profiling &nbsp;
                                     </p>
 
-                                    <table className="table-auto border border-black text-black ml-5 mt-4">
-                                        <thead>
-                                            <tr className="bg-gray-100">
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Purpose or activity </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Type of personal data </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Lawful basis for processing </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    Combining the information we collect about you into a single 
-                                                    customer account profile
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Contact <br />
-                                                    Direct Marketing <br />
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legitimate Interests (to publicise and grow our business)
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div className="overflow-x-auto -mx-4 sm:mx-0">
+                                        <div className="min-w-full px-4 sm:px-0">
+                                            <table className="w-full table-auto border border-black text-black text-sm sm:text-base">
+                                                <thead>
+                                                    <tr className="bg-gray-100">
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Purpose or activity</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[150px]">Type of personal data</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Lawful basis for processing</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Combining the information we collect about you into a single 
+                                                            customer account profile
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Contact <br />
+                                                            Direct Marketing <br />
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legitimate Interests (to publicise and grow our business)
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
 
                                     {/*third table*/}
                                     <p className="text-black text-lg font-bold ml-5 mt-4">
                                     Direct marketing &nbsp;
                                     </p>
 
-                                    <table className="table-auto border border-black text-black ml-5 mt-4">
-                                        <thead>
-                                            <tr className="bg-gray-100">
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Purpose or activity </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Type of personal data </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Lawful basis for processing </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To send you direct marketing communications via email, 
-                                                    text and/or push notification
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Contact <br />
-                                                    Device <br />
-                                                    Direct Marketing
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Consent
-                                                    Unless we can rely on the soft opt-in and you 
-                                                    have not opted out, in which case we rely on 
-                                                    Legitimate Interest (to publicise and grow our business)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To send you direct marketing communications by 
-                                                    telephone or post or email
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Contact <br />
-                                                    Device <br />
-                                                    Direct Marketing
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legitimate interests (to publicise and grow our business)
-                                                    Unless you have opted out, in which case we rely on Consent
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div className="overflow-x-auto -mx-4 sm:mx-0">
+                                        <div className="min-w-full px-4 sm:px-0">
+                                            <table className="w-full table-auto border border-black text-black text-sm sm:text-base">
+                                                <thead>
+                                                    <tr className="bg-gray-100">
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Purpose or activity</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[150px]">Type of personal data</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Lawful basis for processing</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To send you direct marketing communications via email, 
+                                                            text and/or push notification
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Contact <br />
+                                                            Device <br />
+                                                            Direct Marketing
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Consent
+                                                            Unless we can rely on the soft opt-in and you 
+                                                            have not opted out, in which case we rely on 
+                                                            Legitimate Interest (to publicise and grow our business)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To send you direct marketing communications by 
+                                                            telephone or post or email
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Contact <br />
+                                                            Device <br />
+                                                            Direct Marketing
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legitimate interests (to publicise and grow our business)
+                                                            Unless you have opted out, in which case we rely on Consent
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
 
                                     {/*fourth table*/}
                                     <p className="text-black text-lg font-bold ml-5 mt-4">
                                         Troubleshooting, improvement and security &nbsp;
                                     </p>
 
-                                    <table className="table-auto border border-black text-black ml-5 mt-4">
-                                        <thead>
-                                            <tr className="bg-gray-100">
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Purpose or activity </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Type of personal data </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Lawful basis for processing </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To administer, monitor and improve our business, 
-                                                    Services and this App including troubleshooting, 
-                                                    data analysis and system testing
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Identity <br />
-                                                    Contact <br />
-                                                    Device <br />
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legitimate interests (for running our business, 
-                                                    provision of administration and IT services, network security, 
-                                                    maintaining the security of our App and Services, providing a 
-                                                    secure service to users and preventing fraudulent and other misuse of our App) 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    Applying security measures to our processing of your personal data, 
-                                                    including processing in connection with the App
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    All personal data under this privacy notice
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legal obligation (applying appropriate technical and 
-                                                    organisational measures under the GDPR)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    Otherwise monitoring use of the App and deploying 
-                                                    appropriate security measures
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                Contact <br />
-                                                Security <br />
-                                                Transaction <br />
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legitimate interests (running our business, provision of 
-                                                    administration and IT services, network security, maintaining 
-                                                    the security of our App and services, providing a secure 
-                                                    service to users and preventing fraudulent and other misuse of our App)
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div className="overflow-x-auto -mx-4 sm:mx-0">
+                                        <div className="min-w-full px-4 sm:px-0">
+                                            <table className="w-full table-auto border border-black text-black text-sm sm:text-base">
+                                                <thead>
+                                                    <tr className="bg-gray-100">
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Purpose or activity</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[150px]">Type of personal data</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Lawful basis for processing</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To administer, monitor and improve our business, 
+                                                            Services and this App including troubleshooting, 
+                                                            data analysis and system testing
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Identity <br />
+                                                            Contact <br />
+                                                            Device <br />
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legitimate interests (for running our business, 
+                                                            provision of administration and IT services, network security, 
+                                                            maintaining the security of our App and Services, providing a 
+                                                            secure service to users and preventing fraudulent and other misuse of our App) 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Applying security measures to our processing of your personal data, 
+                                                            including processing in connection with the App
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            All personal data under this privacy notice
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legal obligation (applying appropriate technical and 
+                                                            organisational measures under the GDPR)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Otherwise monitoring use of the App and deploying 
+                                                            appropriate security measures
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                        Contact <br />
+                                                        Security <br />
+                                                        Transaction <br />
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legitimate interests (running our business, provision of 
+                                                            administration and IT services, network security, maintaining 
+                                                            the security of our App and services, providing a secure 
+                                                            service to users and preventing fraudulent and other misuse of our App)
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                     {/*fifth table*/}
                                     <p className="text-black text-lg font-bold ml-5 mt-4">
                                         Rights and obligations &nbsp;
                                     </p>
-                                    <table className="table-auto border border-black text-black ml-5 mt-4">
-                                        <thead>
-                                            <tr className="bg-gray-100">
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Purpose or activity </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Type of personal data </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Lawful basis for processing </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To comply with our other legal obligations, including compliance with 
-                                                    tax legislation, judicial, law enforcement and government authorities' 
-                                                    requests
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    All personal data under this privacy notice
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legal obligation (under laws of the UK, Uganda or relevant jurisdiction) 
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div className="overflow-x-auto -mx-4 sm:mx-0">
+                                        <div className="min-w-full px-4 sm:px-0">
+                                            <table className="w-full table-auto border border-black text-black text-sm sm:text-base">
+                                                <thead>
+                                                    <tr className="bg-gray-100">
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Purpose or activity</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[150px]">Type of personal data</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Lawful basis for processing</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To comply with our other legal obligations, including compliance with 
+                                                            tax legislation, judicial, law enforcement and government authorities' 
+                                                            requests
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            All personal data under this privacy notice
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legal obligation (under laws of the UK, Uganda or relevant jurisdiction) 
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                     {/*sixth table*/}
                                     <p className="text-black text-lg font-bold ml-5 mt-4">
                                         Cookies and personalisation &nbsp;
                                     </p>
-                                    <table className="table-auto border border-black text-black ml-5 mt-4">
-                                        <thead>
-                                            <tr className="bg-gray-100">
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Purpose or activity </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Type of personal data </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Lawful basis for processing </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To deploy and process personal data collected via Cookies that 
-                                                    are placed on your device, as set out in the cookies note.
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Cookies
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legitimate interests (delivering and securing the App and our Services)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To deploy and process personal data collected via Cookies 
-                                                    that are not strictly necessary, as set out in the cookies note.
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Cookies
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Consent
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To deliver (personalised) advertisements to you
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Personalisation
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Consent
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div className="overflow-x-auto -mx-4 sm:mx-0">
+                                        <div className="min-w-full px-4 sm:px-0">
+                                            <table className="w-full table-auto border border-black text-black text-sm sm:text-base">
+                                                <thead>
+                                                    <tr className="bg-gray-100">
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Purpose or activity</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[150px]">Type of personal data</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Lawful basis for processing</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To deploy and process personal data collected via Cookies that 
+                                                            are placed on your device, as set out in the cookies note.
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Cookies
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legitimate interests (delivering and securing the App and our Services)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To deploy and process personal data collected via Cookies 
+                                                            that are not strictly necessary, as set out in the cookies note.
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Cookies
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Consent
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To deliver (personalised) advertisements to you
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Personalisation
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Consent
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                     {/*seventh table*/}
                                     <p className="text-black text-lg font-bold ml-5 mt-4">
                                         Other communications &nbsp;
                                     </p>
-                                    <table className="table-auto border border-black text-black ml-5 mt-4">
-                                        <thead>
-                                            <tr className="bg-gray-100">
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Purpose or activity </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Type of personal data </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Lawful basis for processing </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To notify you of changes to the App, Services, 
-                                                    your purchases and our terms and conditions 
-                                                    for ongoing contracts
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Contact
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    For ongoing or prospective contracts, Performance of a contract 
-                                                    Otherwise, Legitimate interests (in servicing our users and prospective users)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To notify you of updates to this privacy notice
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Contact <br />
-                                                    Transaction <br />
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legal obligation (to inform you of our processing under Articles 13 
-                                                    and 14 of the UK GDPR [and the EU GDPR])
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To respond to your requests to exercise your rights under this notice
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    As relevant to your request
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legal obligation (complying with data subject requests under 
-                                                    Chapter 3 of the UK GDPR and the EU GDPR)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To enable you to participate in a prize draw or competition 
-                                                    (where applicable, please also see the separate prize or 
-                                                    competition privacy notice)
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                Contact <br />
-                                                Direct Marketing <br />
-                                                Competition <br />
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legitimate interests (in growing and publicising our business)
-                                                    Unless you have previously opted out, where we will rely on Consent
-                                                    Performance of a contract (once you have entered)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To ask you to complete a survey and process your response
-                                                     (where applicable, please also see the separate privacy notice)
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Contact
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                Legitimate interests (to analyse how users use our products or 
-                                                Services and to develop them and grow our business)
-                                                Unless you have previously opted out, where we will rely on Consent
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    To otherwise respond to your enquiries, fulfil your 
-                                                    requests and to contact you where necessary
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    As relevant to your enquiry or request
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Legitimate interests (service our users and prospective users) 
-                                                    and legal obligation
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div className="overflow-x-auto -mx-4 sm:mx-0">
+                                        <div className="min-w-full px-4 sm:px-0">
+                                            <table className="w-full table-auto border border-black text-black text-sm sm:text-base">
+                                                <thead>
+                                                    <tr className="bg-gray-100">
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Purpose or activity</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[150px]">Type of personal data</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Lawful basis for processing</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To notify you of changes to the App, Services, 
+                                                            your purchases and our terms and conditions 
+                                                            for ongoing contracts
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Contact
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            For ongoing or prospective contracts, Performance of a contract 
+                                                            Otherwise, Legitimate interests (in servicing our users and prospective users)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To notify you of updates to this privacy notice
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Contact <br />
+                                                            Transaction <br />
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legal obligation (to inform you of our processing under Articles 13 
+                                                            and 14 of the UK GDPR [and the EU GDPR])
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To respond to your requests to exercise your rights under this notice
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            As relevant to your request
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legal obligation (complying with data subject requests under 
+                                                            Chapter 3 of the UK GDPR and the EU GDPR)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To enable you to participate in a prize draw or competition 
+                                                            (where applicable, please also see the separate prize or 
+                                                            competition privacy notice)
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                        Contact <br />
+                                                        Direct Marketing <br />
+                                                        Competition <br />
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legitimate interests (in growing and publicising our business)
+                                                            Unless you have previously opted out, where we will rely on Consent
+                                                            Performance of a contract (once you have entered)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To ask you to complete a survey and process your response
+                                                             (where applicable, please also see the separate privacy notice)
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Contact
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                        Legitimate interests (to analyse how users use our products or 
+                                                        Services and to develop them and grow our business)
+                                                        Unless you have previously opted out, where we will rely on Consent
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            To otherwise respond to your enquiries, fulfil your 
+                                                            requests and to contact you where necessary
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            As relevant to your enquiry or request
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Legitimate interests (service our users and prospective users) 
+                                                            and legal obligation
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 {/*eighth table*/}
                                 <p className="text-black text-lg font-bold ml-5 mt-4">
                                     Personal data sharing &nbsp;
                                 </p>
-                                <table className="table-auto border border-black text-black ml-5 mt-4">
-                                    <thead>
-                                        <tr className="bg-gray-100">
-                                        <th className="border border-black px-4 py-2 font-bold text-black">Purpose or activity </th>
-                                        <th className="border border-black px-4 py-2 font-bold text-black">Type of personal data </th>
-                                        <th className="border border-black px-4 py-2 font-bold text-black">Lawful basis for processing </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td className="border border-black px-4 py-2">
-                                                Share personal data with our third-party providers 
-                                                for purposes not otherwise set out above 
-                                            </td>
-                                            <td className="border border-black px-4 py-2">
-                                                Identity <br /> 
-                                                Contact <br /> 
-                                                Transaction <br /> 
-                                                Device <br /> 
-                                                Location <br /> 
-                                            </td>
-                                            <td className="border border-black px-4 py-2">
-                                                Legitimate interests (for the purpose relevant to the recipient, 
-                                                as set out at "Disclosures of your personal data")
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                                    <div className="min-w-full px-4 sm:px-0">
+                                        <table className="w-full table-auto border border-black text-black text-sm sm:text-base">
+                                            <thead>
+                                                <tr className="bg-gray-100">
+                                                <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Purpose or activity</th>
+                                                <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[150px]">Type of personal data</th>
+                                                <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Lawful basis for processing</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                        Share personal data with our third-party providers 
+                                                        for purposes not otherwise set out above 
+                                                    </td>
+                                                    <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                        Identity <br /> 
+                                                        Contact <br /> 
+                                                        Transaction <br /> 
+                                                        Device <br /> 
+                                                        Location <br /> 
+                                                    </td>
+                                                    <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                        Legitimate interests (for the purpose relevant to the recipient, 
+                                                        as set out at "Disclosures of your personal data")
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                                 {/*ninth table*/}
                                 <p className="text-black text-lg font-bold ml-5 mt-4">
                                     Business contacts &nbsp;
                                 </p>
-                                <table className="table-auto border border-black text-black ml-5 mt-4">
-                                    <thead>
-                                        <tr className="bg-gray-100">
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Purpose or activity </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Type of personal data </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Lawful basis for processing </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td className="border border-black px-4 py-2">
-                                                Process personal data relating to staff members of our 
-                                                business contacts, including suppliers, customers and prospects
-                                            </td>
-                                            <td className="border border-black px-4 py-2">
-                                                Contact
-                                            </td>
-                                            <td className="border border-black px-4 py-2">
-                                                Legitimate interests (servicing and receiving products or 
-                                                services, to or from our business contacts and carry out our B2B business)
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                                    <div className="min-w-full px-4 sm:px-0">
+                                        <table className="w-full table-auto border border-black text-black text-sm sm:text-base">
+                                            <thead>
+                                                <tr className="bg-gray-100">
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Purpose or activity</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[150px]">Type of personal data</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Lawful basis for processing</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                        Process personal data relating to staff members of our 
+                                                        business contacts, including suppliers, customers and prospects
+                                                    </td>
+                                                    <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                        Contact
+                                                    </td>
+                                                    <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                        Legitimate interests (servicing and receiving products or 
+                                                        services, to or from our business contacts and carry out our B2B business)
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                                 <p className="text-black text-lg font-bold ml-5 mt-4">
                                     Automated decision making and profiling &nbsp;
                                 </p>
@@ -1236,6 +1265,7 @@ export default function PrivacyPolicy() {
                 </div>
             </div>
             
+            <Footer />
         </div>
     );
 }

@@ -4,23 +4,16 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
 export default function CookiePolicy() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [ isModalOpenPolicy, setIsModalOpenPolicy ] = useState(false);
-
-    const openModal = () => setIsModalOpen(true);
-    const openModalprivacy = () =>setIsModalOpenPolicy(true);
-    const closeModalPrivacy = () => setIsModalOpenPolicy(false);
-    const closeModal = () => setIsModalOpen(false);
     return(
         <div className="min-h-screen flex flex-col bg-gray-50">
             
-            <div className="flex-grow py-8 px-4 sm:px-6 lg:px-8">
+            <div className="flex-grow py-4 sm:py-8 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
-                    <div className="px-8 py-12 sm:px-12 sm:py-16">
+                    <div className="px-4 py-6 sm:px-8 sm:py-12 lg:px-12 lg:py-16">
                         
                         {/* Header */}
-                        <div className="mb-2">
-                            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                        <div className="mb-4 sm:mb-6">
+                            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
                                 Updated Cookie Policy - Social Gems 5.3.25
                             </h3>
                         </div>
@@ -79,75 +72,79 @@ export default function CookiePolicy() {
                                         use and the purposes for which we use them in the table below:
                                     </p>
                                     {/*table*/}
-                                    <table className="table-auto border border-black text-black ml-5 mt-4">
-                                        <thead>
-                                            <tr className="bg-gray-100">
-                                            <th className="border border-black px-4 py-2 font-bold text-black">
-                                                Cookie Title <br />
-                                                Cookie Name
-                                            </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">Purpose  </th>
-                                            <th className="border border-black px-4 py-2 font-bold text-black">More information </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    _TekJuice.Auth
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    This cookie ensures the security and integrity of user accounts by: <br /> <br />
-                                                    1.	Managing user authentication. <br />
-                                                    2.	Allowing users to securely log in and access their accounts, <br />
-                                                    3.	Enabling users to navigate restricted areas and perform actions available only to authenticated users. <br />
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    N/A
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border border-black px-4 py-2">
-                                                    _ga_GG0RMYYQ0B, _ga 
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    Google Analytics uses cookies for various purposes related to 
-                                                    tracking and analysing traffic and user behaviour. 
-                                                    Here are the primary purposes of cookies used by Google 
-                                                    Analytics for GDPR compliance: <br /> <br />
+                                    <div className="overflow-x-auto -mx-4 sm:mx-0">
+                                        <div className="min-w-full px-4 sm:px-0">
+                                            <table className="w-full table-auto border border-black text-black text-sm sm:text-base">
+                                                <thead>
+                                                    <tr className="bg-gray-100">
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[120px]">
+                                                        Cookie Title <br />
+                                                        Cookie Name
+                                                    </th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[200px]">Purpose</th>
+                                                    <th className="border border-black px-2 sm:px-4 py-2 font-bold text-black text-left min-w-[100px]">More information</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            _TekJuice.Auth
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            This cookie ensures the security and integrity of user accounts by: <br /> <br />
+                                                            1.	Managing user authentication. <br />
+                                                            2.	Allowing users to securely log in and access their accounts, <br />
+                                                            3.	Enabling users to navigate restricted areas and perform actions available only to authenticated users. <br />
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            N/A
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            _ga_GG0RMYYQ0B, _ga 
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            Google Analytics uses cookies for various purposes related to 
+                                                            tracking and analysing traffic and user behaviour. 
+                                                            Here are the primary purposes of cookies used by Google 
+                                                            Analytics for GDPR compliance: <br /> <br />
 
-                                                    1.	<strong>Analytics and Performance: &nbsp;</strong>Google Analytics cookies are primarily 
-                                                    utilized to collect information about how visitors interact with a 
-                                                    website. They track and report data on website traffic, such as the 
-                                                    number of visitors, their source, pages visited, time spent on the 
-                                                    site, and other related statistics. This data helps website owners 
-                                                    understand and improve their site's performance and user experience. <br />
+                                                            1.	<strong>Analytics and Performance: &nbsp;</strong>Google Analytics cookies are primarily 
+                                                            utilized to collect information about how visitors interact with a 
+                                                            website. They track and report data on website traffic, such as the 
+                                                            number of visitors, their source, pages visited, time spent on the 
+                                                            site, and other related statistics. This data helps website owners 
+                                                            understand and improve their site's performance and user experience. <br />
 
-                                                    2.	<strong>User Experience Improvement:&nbsp;</strong> The cookies help in understanding user 
-                                                    preferences and behavior, allowing website owners to optimize content, 
-                                                    design, and usability to enhance the overall user experience.
-                                                    <br />
-                                                    3.	<strong>Marketing and Advertising:&nbsp;</strong> Google Analytics cookies may also be used 
-                                                    to provide insights for targeted marketing and advertising strategies. 
-                                                    These cookies can track user behavior across various websites, allowing 
-                                                    for more targeted and personalized advertising campaigns.
-                                                    <br />
-                                                    4.	<strong>Customization and Personalization:&nbsp;</strong> By tracking user interactions, 
-                                                    Google Analytics cookies contribute to creating a more personalized 
-                                                    experience for website visitors. This can include providing tailored 
-                                                    content or recommendations based on users' browsing history and interests.
-                                                    <br />
-                                                    5.	<strong>Conversion Tracking:&nbsp;</strong> These cookies assist in measuring and tracking 
-                                                    specific user actions on a website, such as purchases, form submissions, 
-                                                    or other conversions, helping website owners understand the effectiveness 
-                                                    of their marketing and site content.
-                                                    <br />
-                                                </td>
-                                                <td className="border border-black px-4 py-2">
-                                                    
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                            2.	<strong>User Experience Improvement:&nbsp;</strong> The cookies help in understanding user 
+                                                            preferences and behavior, allowing website owners to optimize content, 
+                                                            design, and usability to enhance the overall user experience.
+                                                            <br />
+                                                            3.	<strong>Marketing and Advertising:&nbsp;</strong> Google Analytics cookies may also be used 
+                                                            to provide insights for targeted marketing and advertising strategies. 
+                                                            These cookies can track user behavior across various websites, allowing 
+                                                            for more targeted and personalized advertising campaigns.
+                                                            <br />
+                                                            4.	<strong>Customization and Personalization:&nbsp;</strong> By tracking user interactions, 
+                                                            Google Analytics cookies contribute to creating a more personalized 
+                                                            experience for website visitors. This can include providing tailored 
+                                                            content or recommendations based on users' browsing history and interests.
+                                                            <br />
+                                                            5.	<strong>Conversion Tracking:&nbsp;</strong> These cookies assist in measuring and tracking 
+                                                            specific user actions on a website, such as purchases, form submissions, 
+                                                            or other conversions, helping website owners understand the effectiveness 
+                                                            of their marketing and site content.
+                                                            <br />
+                                                        </td>
+                                                        <td className="border border-black px-2 sm:px-4 py-2 align-top">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </ul>  
 
 
