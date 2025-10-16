@@ -3,7 +3,7 @@ import { useState } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
-export default function PrivacyPolicy() {
+export default function CookiePolicy() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [ isModalOpenPolicy, setIsModalOpenPolicy ] = useState(false);
 
@@ -11,7 +11,6 @@ export default function PrivacyPolicy() {
     const openModalprivacy = () =>setIsModalOpenPolicy(true);
     const closeModalPrivacy = () => setIsModalOpenPolicy(false);
     const closeModal = () => setIsModalOpen(false);
-
     return(
         <div className="min-h-screen flex flex-col bg-gray-50">
             
