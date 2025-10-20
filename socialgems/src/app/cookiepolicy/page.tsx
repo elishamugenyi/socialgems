@@ -176,9 +176,9 @@ export default function CookiePolicy() {
                                 </p>
                                 <p className="text-black mb-2">
                                 If you have any questions or concerns about our use of cookies, please send us an email at &nbsp; 
-                                <a href="mailto:wensi@tekjuice.co.uk" 
+                                <a href="mailto:Nobert@tekjuice.co.uk" 
                                     className="text-black text-blue-700 font-medium hover:text-purple-700 transition-colors">
-                                        wensi@tekjuice.co.uk
+                                        Nobert@tekjuice.co.uk
                                 </a>.
                                 </p>
                             </section>

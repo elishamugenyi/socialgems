@@ -108,10 +108,10 @@ export default function TermsofUse() {
                                  wish to contact us for any other reason please email our customer 
                                  service team at &nbsp;
                                  <a 
-                                    href="mailto:wensi@tekjuice.co.uk" 
+                                    href="mailto:Nobert@tekjuice.co.uk" 
                                     className="text-black text-blue-700 font-medium hover:text-purple-700 transition-colors"
                                     >
-                                    wensi@tekjuice.co.uk
+                                    Nobert@tekjuice.co.uk
                                 </a>.
                             </p>
                             <p className="mb-2 text-black">

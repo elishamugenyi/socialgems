@@ -81,7 +81,7 @@ export default function PrivacyPolicy() {
                                 <div className="bg-gray-50 p-6 rounded-lg mb-2">
                                     <ul className="list-disc list-inside space-y-3 text-black">
                                         <li><strong>Full name of legal entity:</strong> <strong>TEK JUICE LIMITED</strong></li>
-                                        <li><strong>Email address:</strong> <a href="mailto:Wensi@tekjuice.co.uk" className="text-blue-600 hover:text-blue-800">Wensi@tekjuice.co.uk</a></li>
+                                        <li><strong>Email address:</strong> <a href="mailto:Nobert@tekjuice.co.uk" className="text-blue-600 hover:text-blue-800">Nobert@tekjuice.co.uk</a></li>
                                         <li><strong>Postal address:</strong> <strong>19 The Office Village, North Road, Loughborough, Leicestershire, England, LE11 1QJ</strong>
                                         </li>
                                     </ul>
@@ -1227,10 +1227,10 @@ export default function PrivacyPolicy() {
                                 <p className="text-black mb-2">
                                     You can exercise any of these rights at any time by contacting us at
                                     <a 
-                                        href="mailto:wensi@tekjuice.co.uk" 
+                                        href="mailto:Nobert@tekjuice.co.uk" 
                                         className="text-black text-blue-700 font-medium hover:text-purple-700 transition-colors"
                                         >
-                                        &nbsp;wensi@tekjuice.co.uk
+                                        &nbsp;Nobert@tekjuice.co.uk
                                     </a>
                                 </p>
                             </section>
@@ -1245,17 +1245,11 @@ export default function PrivacyPolicy() {
                                         this privacy notice or our data protection practices, please contact the 
                                         data privacy manager. Our contact details are
                                         <a 
-                                            href="mailto:wensi@tekjuice.co.uk" 
+                                            href="mailto:Nobert@tekjuice.co.uk" 
                                             className="text-black text-blue-700 font-medium hover:text-purple-700 transition-colors"
                                         >
-                                        &nbsp;wensi@tekjuice.co.uk
-                                    </a> and 
-                                    <a 
-                                        href="mailto:Nobert@tekjuice.co.uk" 
-                                        className="text-black text-blue-700 font-medium hover:text-purple-700 transition-colors"
-                                        >
                                         &nbsp;Nobert@tekjuice.co.uk
-                                        </a>
+                                    </a>
                                     </p>
                                 </div>
                             </section>
